@@ -1473,10 +1473,11 @@ def update_html_articles(articles: Dict[str, Dict]) -> bool:
     articles_list = list(articles.values())
     new_articles_json = json.dumps(articles_list, indent=12)
 
-    pattern = r'(const articles = \[).*?(\];)'
+    pattern = r'const articles = \[.*?\];'
     replacement = f'const articles = {new_articles_json[:-1]}];'
 
-    updated_html, count = re.subn(pattern, replacement, html_content, count=1, flags=re.DOTALL)
+    # Use a lambda to avoid regex interpreting backslash sequences (e.g. \u) in the replacement string
+    updated_html, count = re.subn(pattern, lambda m: replacement, html_content, count=1, flags=re.DOTALL)
 
     if count == 0:
         logger.warning("Could not find articles array in existing HTML")

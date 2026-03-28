@@ -849,98 +849,20 @@
                     </div>
                 </div>
             </div>
+            <div id="articles-container" class="articles-grid"></div>
+        </div>
 
+        <div id="insights" class="tab-content">
             <div class="key-dev-section">
                 <div class="key-dev-title">Key Developments</div>
                 <div class="key-dev-grid" id="key-dev-container"></div>
             </div>
 
-            <div id="articles-container" class="articles-grid"></div>
-        </div>
-
-        <div id="insights" class="tab-content">
-            <div class="insights-grid" style="margin-bottom: 2rem;">
-                <div class="insight-card">
-                    <a href="#" class="stat-link" data-stat-filter="all" style="text-decoration: none; color: inherit;">
-                        <div class="stat-number" id="insights-total">0</div>
-                        <div class="stat-label">Total Articles</div>
-                    </a>
-                </div>
-                <div class="insight-card">
-                    <a href="#" class="stat-link" data-stat-filter="primary-sources" style="text-decoration: none; color: inherit;">
-                        <div class="stat-number" id="insights-sources">0</div>
-                        <div class="stat-label">Unique Sources</div>
-                    </a>
-                </div>
-                <div class="insight-card">
-                    <a href="#" class="stat-link" data-stat-filter="Enforcement" style="text-decoration: none; color: inherit;">
-                        <div class="stat-number" id="insights-enforcement">0</div>
-                        <div class="stat-label">Enforcement Actions</div>
-                    </a>
-                </div>
-                <div class="insight-card">
-                    <a href="#" class="stat-link" data-stat-filter="Guidance" style="text-decoration: none; color: inherit;">
-                        <div class="stat-number" id="insights-legislation">0</div>
-                        <div class="stat-label">Active Legislation</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">Articles by Category</div>
-                <div class="bar-chart" id="category-chart"></div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
-                <div class="insight-card">
-                    <div class="insight-title">Enforcement Trajectory</div>
-                    <div class="insight-text">
-                        FDA enforcement action against compounded GLP-1 drugs has escalated dramatically across 2026. The agency issued 30 warning letters to telehealth companies in March alone, citing violations including false claims of sameness with approved products and obscured sourcing information. The FDA Law Blog's analysis suggests the government may be preparing to pursue enforcement through the Department of Justice following HHS General Counsel's referral of Hims. High-volume, standardized formulation, and national distribution are no longer treated as permissible compounding but as manufacturing, requiring 503A pharmacies to remain patient-specific in both form and reality.
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">GLP-1 Market Dynamics</div>
-                    <div class="insight-text">
-                        The market for compounded GLP-1 drugs faces unprecedented pressure from multiple directions. Novo Nordisk testing found impurities as high as 86% in injectable semaglutide and 75% in oral versions. Patent litigation expanded beyond Novo to include Eli Lilly, which documented chemical reactions between tirzepatide and vitamin B12 creating unknown impurities, bacterial contamination, and elevated endotoxin levels. The Novo Nordisk-Hims partnership announced in March 2026 signals a new market dynamic where branded and compounded GLP-1s may coexist through regulated channels. Meanwhile, compounders have adapted by adding supplemental ingredients to argue products are not exact copies of FDA-approved versions.
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">Peptide Reclassification Outlook</div>
-                    <div class="insight-text">
-                        On February 27, 2026, HHS Secretary RFK Jr. announced plans to move approximately 14 of 19 peptides from Category 2 back to Category 1, restoring compounding access for BPC-157, Thymosin Alpha-1, AOD-9604, Semax, Selank, KPV, and MOTS-C. However, as of March 2026, no formal Federal Register notice has been issued. FDA guidance indicates five peptides were removed from Category 2 in September 2024 following nominator withdrawal, and the PCAC voted against inclusion of ipamorelin, CJC-1295, AOD-9604, and thymosin alpha-1 in the 503A bulks regulation. NPR reported that FDA restrictions have driven patients to unregulated overseas suppliers with potentially adulterated products.
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">Legislative Landscape</div>
-                    <div class="insight-text">
-                        Federal and state legislatures are actively reshaping compounding regulation. The SAFE Drugs Act of 2025 (H.R. 6509) introduced December 9 would require pre-compounding inspections for 503B facilities, biennial re-inspections for high-volume compounders, and Interstate shipment reporting for prescriptions exceeding 20 per drug. State-level activity includes California's new 'essentially a copy' rules and SB 282, Florida's SB 860 and HB 877 targeting GLP-1 compounding with API sourcing requirements, Indiana's SB 282 expanding oversight, Arizona's withdrawn HB 4036 signaling heightened scrutiny, and Colorado's SB 26-066 pending hearing which opponents argue may limit patient access despite being framed as targeting counterfeits.
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">Telehealth Compliance Risk</div>
-                    <div class="insight-text">
-                        Telehealth platforms marketing compounded GLP-1 drugs face compounding compliance risks. The FDA sent warning letters specifically calling out marketing language implying FDA approval, obscuring the compounding source, and using brand-adjacent naming conventions. Despite thousands of warning letters, compounded GLP-1 prescriptions have continued increasing, with approximately 80% now including supplemental ingredients. Venable analysis notes that mass-produced and mass-distributed products become a gray area, threatening the reputation of legitimately specialized compounding. The distinction between patient-specific and manufacturing-scale operations is the regulatory fulcrum.
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">Strategic Recommendations</div>
-                    <div class="insight-text">
-                        Telehealth and compounding stakeholders should prioritize demonstrable patient-specificity in formulation, transparent sourcing disclosures in all marketing, compliance with state-specific requirements (especially CA, FL, IN, CO), and real-time tracking of both federal and state legislative changes. Industry groups like the Alliance for Pharmacy Compounding are advocating for regulatory clarity through blueprints and guidance documents. Companies should ensure marketing language avoids claims of sameness with FDA-approved products and maintain full compliance with interstate shipment tracking and API sourcing documentation. Monitoring of peptide reclassification announcements and preparation for potential 503A rule changes are essential for 2026.
-                    </div>
-                </div>
-            </div>
+            <div class="insights-grid" id="insights-container"></div>
         </div>
 
         <div id="timeline" class="tab-content">
-            <div style="padding: 2rem;">
-                <h2 style="font-family: Georgia, serif; margin-bottom: 2rem; color: #1a1a2e;">FDA and Legislative Enforcement Milestones</h2>
-                <div class="timeline" id="timeline-container"></div>
-            </div>
+            <div class="timeline" id="timeline-container"></div>
         </div>
 
         <div id="risks" class="tab-content">
@@ -950,103 +872,1080 @@
 
     <footer>
         <div class="footer-disclaimer">
-            <p>This dashboard aggregates publicly available information from regulatory agencies, legal publications, industry associations, and news sources. Content is provided for informational purposes only and does not constitute legal advice. Consult qualified regulatory counsel for business decisions. Information accuracy and completeness are not guaranteed.</p>
+            <p><strong>Disclaimer:</strong> This dashboard is for informational purposes only and does not constitute legal advice. It is updated regularly but may not reflect the most current regulatory developments. Users should consult legal counsel for compliance guidance.</p>
         </div>
     </footer>
 
     <script>
-        // Article data with expanded sources and jurisdiction field
         const articles = [
-            {"title": "The Government's Warning Shot? FDA and HHS Turn Up the Pressure on Compounding", "url": "https://www.thefdalawblog.com/2026/02/the-governments-warning-shot-fda-and-hhs-turn-up-the-pressure-on-compounding/", "summary": "Hyman, Phelps and McNamara analysis of whether compounders are on notice after FDA's February 2026 enforcement escalation. The article examines whether the FDA may be preparing to pursue at least one compounder through the Department of Justice, particularly after the HHS General Counsel's referral of Hims to the DOJ.", "date": "2026-02-23", "source": "FDA Law Blog (HP&M)", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Feb 23, 2026"},
-            {"title": "FDA Tightens the Belt on GLP-1 Compounding, Escalating Threat of Enforcement", "url": "https://natlawreview.com/article/fda-tightens-belt-glp-1-compounding-escalating-threat-enforcement", "summary": "Analysis of FDA's escalating enforcement posture. High-volume, standardized formulation, and national distribution are no longer being treated as aggressive compounding but as manufacturing. 503A pharmacies must remain patient-specific in both form and reality.", "date": "2026-03-04", "source": "National Law Review", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 04, 2026"},
-            {"title": "Does GLP-1 Compounding Foretell Patent Enforcement Outside the Hatch-Waxman Framework?", "url": "https://www.morganlewis.com/pubs/2026/02/does-glp-1-compounding-foretell-patent-enforcement-outside-the-hatch-waxman-framework", "summary": "Morgan Lewis analysis of how patent enforcement against compounders differs from traditional Hatch-Waxman litigation. The automatic 30-month stay would not apply against compounders. Branded companies would need to prove entitlement to preliminary injunction, shifting litigation focus to damages.", "date": "2026-02-14", "source": "Morgan Lewis", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 14, 2026"},
-            {"title": "FDA's Latest GLP-1 Crackdown: What Compounders and Telehealth Platforms Need to Know", "url": "https://www.venable.com/insights/publications/2026/03/fdas-latest-glp-1-crackdown-what-compounders", "summary": "Venable analysis noting that unsafe compounding threatens the reputation of compounding done safely. Compounding is intended to be specialized to an individual patient, but it becomes a gray area when mass-produced and mass-distributed.", "date": "2026-03-05", "source": "Venable LLP", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 05, 2026"},
-            {"title": "APC CEO Statement on FDA's Announced Intention to Restrict GLP-1 APIs", "url": "https://a4pc.org/news/apc-ceo-statement-fda-hims-02062026", "summary": "Alliance for Pharmacy Compounding CEO Scott Brunner responds to FDA's GLP-1 API restriction announcement. Notes that over four years of compounded GLP-1 activity, FDA had not asserted that semaglutide or tirzepatide APIs used by drugmakers are superior to or different from those used by compounding pharmacies.", "date": "2026-02-06", "source": "Alliance for Pharmacy Compounding", "category": "Compounding", "jurisdiction": "federal", "date_display": "Feb 06, 2026"},
-            {"title": "APC Releases 2025-2026 Snapshot of Pharmacy Compounding in America", "url": "https://a4pc.org/news/apc-releases-the-2025-2026-snapshot-of-pharmacy-compounding-in-america-key-trends-and-insights", "summary": "Alliance for Pharmacy Compounding publishes comprehensive industry survey covering compounding volumes, market trends, regulatory compliance challenges, and the shifting landscape for 503A and 503B facilities nationwide.", "date": "2026-01-20", "source": "Alliance for Pharmacy Compounding", "category": "Compounding", "jurisdiction": "federal", "date_display": "Jan 20, 2026"},
-            {"title": "APC Releases 14-Point Blueprint for Smarter Federal Regulation of Compounding", "url": "https://a4pc.org/news/apc-releases-12-point-blueprint-for-smarter-streamlined-federal-regulation-to-protect-patient-access-to-compounded-medications", "summary": "APC proposes a 14-point regulatory blueprint to streamline federal oversight of compounding while protecting patient access. Recommendations address FDA inspection processes, bulk drug substance policies, and interstate compounding frameworks.", "date": "2026-01-10", "source": "Alliance for Pharmacy Compounding", "category": "Guidance", "jurisdiction": "federal", "date_display": "Jan 10, 2026"},
-            {"title": "Hims Cancels Plans to Sell Compounded GLP-1 Pill After FDA Backlash", "url": "https://www.biopharmadive.com/news/hims-stop-launch-compounded-wegovy-fda-novo/811662/", "summary": "Hims abandoned plans to sell a compounded version of oral Wegovy following backlash from FDA Commissioner Makary, who threatened swift action against companies mass-marketing illegal copycat drugs. Novo Nordisk's testing found impurities of up to 86% in compounded injectable semaglutide and up to 75% in oral versions.", "date": "2026-02-08", "source": "BioPharma Dive", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 08, 2026"},
-            {"title": "Novo Nordisk Sues Hims & Hers Over Compounded Obesity Drugs", "url": "https://www.cnbc.com/2026/02/09/novo-nordisk-sues-hims-hers-compounded-obesity-drugs.html", "summary": "Novo Nordisk filed patent infringement lawsuit against Hims for US Patent 8,129,343 over compounded semaglutide products. Sought permanent ban on Hims selling compounded versions and recovery of damages. Later settled via partnership agreement in March 2026.", "date": "2026-02-09", "source": "CNBC", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 09, 2026", "id": "art-novo-sues-hims"},
-            {"title": "U.S. Signals Crackdown on Compounded Weight-Loss Drugs", "url": "https://www.cnbc.com/2026/02/06/fda-to-restrict-glp-1-ingredients-used-in-nonapproved-compounded-drugs.html", "summary": "FDA announced it would restrict GLP-1 APIs in non-approved compounded drugs. On the same day, HHS General Counsel referred Hims to the DOJ for investigation of potential federal law violations. Hims shares tumbled on the news.", "date": "2026-02-06", "source": "CNBC", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Feb 06, 2026", "id": "art-cnbc-crackdown"},
-            {"title": "Eli Lilly Warns Compounded GLP-1 Knockoffs May Be Dangerous", "url": "https://www.biopharmadive.com/news/lilly-obesity-zepbound-compounder-fda-impurity-/814536/", "summary": "Eli Lilly issued open letter warning that compounded tirzepatide with vitamin B12 contains significant levels of an unknown impurity from a chemical reaction between the two substances. Also found bacterial contamination, high endotoxin levels, and other impurities in compounded knockoffs.", "date": "2026-03-13", "source": "BioPharma Dive", "category": "Drug Supply", "jurisdiction": "federal", "date_display": "Mar 13, 2026"},
-            {"title": "FDA to Restrict Ingredients Used in Mass-Marketed Compounded GLP-1s, Crack Down on Misleading Ads", "url": "https://www.ajmc.com/view/fda-to-restrict-ingredients-used-in-mass-marketed-compounded-glp-1s-crack-down-on-misleading-ads", "summary": "AJMC coverage of FDA's dual-pronged enforcement strategy: restricting GLP-1 APIs in mass-marketed compounded products while simultaneously cracking down on misleading direct-to-consumer advertising. Over the past six months, the agency sent thousands of warning letters.", "date": "2026-02-07", "source": "AJMC", "category": "Advertising", "jurisdiction": "federal", "date_display": "Feb 07, 2026"},
-            {"title": "Oral Semaglutide and the GLP-1 Compounding Reckoning", "url": "https://www.bipc.com/oral-semaglutide-and-the-glp-1-compounding-reckoning-from-regulatory-ambiguity-to-fda-enforcement,-doj-referrals,-and-novo-nordisk%E2%80%99s-case-against-hims-and-hers", "summary": "Buchanan Ingersoll analysis tracing the arc from regulatory ambiguity to FDA enforcement, DOJ referrals, and the Novo Nordisk case against Hims. Examines how the oral semaglutide approval transformed the enforcement landscape for compounders.", "date": "2026-02-12", "source": "Buchanan Ingersoll & Rooney", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 12, 2026"},
-            {"title": "The Government May Soon Lift Restrictions on Some Peptide Treatments", "url": "https://www.npr.org/2026/03/26/nx-s1-5758017/the-government-may-soon-lift-restrictions-on-some-peptide-treatments", "summary": "NPR reports that because of FDA restrictions, patients have turned to unregulated overseas suppliers, presenting new safety dangers from potentially adulterated products. HHS has not provided a specific timeline for formal reclassification.", "date": "2026-03-26", "source": "NPR", "category": "Peptides", "jurisdiction": "federal", "date_display": "Mar 26, 2026"},
-            {"title": "FDA Removes Certain Peptide Bulk Drug Substances from Category 2, Sets PCAC Review Dates", "url": "https://www.lexology.com/library/detail.aspx?g=2e55b76a-3173-4e04-beda-bf021202f18d", "summary": "Five peptides (AOD-9604, CJC-1295, ipamorelin acetate, thymosin alpha-1, Selank acetate) removed from Category 2 as of September 27, 2024 based on nominators' withdrawal. PCAC voted against inclusion of ipamorelin, CJC-1295, AOD-9604, and thymosin alpha-1 in the 503A bulks regulation.", "date": "2025-10-01", "source": "Lexology", "category": "Peptides", "jurisdiction": "federal", "date_display": "Oct 01, 2025"},
-            {"title": "The Peptide Landscape Is Shifting: What RFK Jr.'s Announcement Could Mean for Compounding", "url": "https://www.frierlevitt.com/articles/fda-peptide-regulation-rfk-announcement-compounding-pharmacies/", "summary": "Frier Levitt analysis of the implications of RFK Jr.'s peptide reclassification announcement for compounding pharmacies. Examines the gap between the policy announcement and formal regulatory action, and what pharmacies should do in the interim.", "date": "2026-03-05", "source": "Frier Levitt", "category": "Peptides", "jurisdiction": "federal", "date_display": "Mar 05, 2026"},
-            {"title": "Hims Faces Regulatory and Legal Risks in GLP-1 Business Expansion", "url": "https://www.globalbankingandfinance.com/analysis-hims-expansion-come-time-risky-glp-1-business/", "summary": "Financial analysis of Hims regulatory exposure including SEC Division of Enforcement investigation into public statements and disclosures regarding compounded semaglutide and related business relationships.", "date": "2026-02-15", "source": "Global Banking & Finance", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 15, 2026"},
-            {"title": "GLP-1 Receptor Agonists: Drug Litigation Overview and Trends", "url": "https://www.foley.com/insights/publications/2025/04/glp-1-receptor-agonists-drug-litigation-overview-trends/", "summary": "Foley and Lardner comprehensive overview of GLP-1 litigation landscape covering patent disputes, FDA enforcement actions, ITC proceedings, and state-level regulatory challenges facing compounders.", "date": "2025-10-10", "source": "Foley & Lardner", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Oct 10, 2025"},
-            {"title": "Why the FDA Issued 30 Warning Letters to Telehealth Sites Marketing Compounded GLP-1s", "url": "https://www.pharmtech.com/view/why-the-fda-issued-30-warning-letters-to-telehealth-sites-marketing-compounded-glp-1s", "summary": "Pharmaceutical Technology analysis of the specific violations cited in the March 2026 warning letters, including claims implying FDA approval, obscuring compounding sources, and using brand-adjacent naming conventions.", "date": "2026-03-06", "source": "Pharmaceutical Technology", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 06, 2026"},
-            {"title": "Compounded GLP-1s: Filling a Medical Need But Posing What Dangers?", "url": "https://www.healthlawpolicy.org/2026/03/02/compounded-glp-1s-filling-a-medical-need-but-posing-what-dangers/", "summary": "Health Law and Policy Brief analysis examining the tension between patient access and safety concerns in the compounded GLP-1 market, including cold-chain integrity vulnerabilities and fraud risks from counterfeit products.", "date": "2026-03-02", "source": "Health Law & Policy Brief", "category": "Drug Supply", "jurisdiction": "federal", "date_display": "Mar 02, 2026"},
-            {"title": "FDA Reaffirms Strict Regulations Amid GLP-1 Compounding Concerns", "url": "https://www.drugtopics.com/view/fda-reaffirms-strict-regulations-amid-glp-1-compounding-concerns", "summary": "Drug Topics reports that high-volume, standardized formulation, and national distribution are now being treated as manufacturing rather than compounding. 503A pharmacies must remain patient-specific in both form and reality or face enforcement.", "date": "2026-02-20", "source": "Drug Topics", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Feb 20, 2026"},
-            {"title": "Compounded GLP-1 Drugs: Texas Judge Denies PI Motion, Plaintiff OFA Appeals", "url": "https://www.foley.com/insights/publications/2025/03/compounded-glp-1-drugs-texas-judge-denies-pi-motion/", "summary": "U.S. District Court in Northern District of Texas ruled in favor of FDA, denying Outsourcing Facilities Association motion for preliminary injunction regarding tirzepatide compounding. OFA filed interlocutory appeal to the Fifth Circuit on March 10, 2025.", "date": "2025-03-05", "source": "Foley & Lardner", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Mar 05, 2025"},
-            {"title": "California Board of Pharmacy's New 'Essentially a Copy' Rules: What GLP-1 Compounders Need to Know", "url": "https://www.frierlevitt.com/articles/california-board-of-pharmacys-new-essentially-a-copy-rules-what-glp-1-compounders-need-to-know/", "summary": "California's new rules define a compounded drug as 'essentially a copy' if it contains the same API unless a change produces a 'clinically significant difference' verified and documented by the pharmacist. The Board has not issued formal guidance defining what constitutes sufficient evidence.", "date": "2026-01-15", "source": "Frier Levitt", "category": "Guidance", "jurisdiction": "state", "date_display": "Jan 15, 2026", "state": "CA"},
-            {"title": "California SB 282: New Compounding and Medical Spa Regulation", "url": "https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/", "summary": "Introduced January 2026, California SB 282 would tighten state controls on drug compounding and create a new registration and enforcement framework for medical spas. Effective July 1, 2026, the bill would restrict compounding using bulk drug substances unless specified statutory requirements are met.", "date": "2026-01-25", "source": "Frier Levitt", "category": "Guidance", "jurisdiction": "state", "date_display": "Jan 25, 2026", "state": "CA"},
-            {"title": "Florida SB 860: A New Playbook for Weight-Loss Compounding", "url": "https://floridahealthcarelawfirm.com/floridas-sb-860-a-new-playbook-for-weight-loss-compounding/", "summary": "Florida SB 860 would specifically regulate compounded drugs for weight loss, requiring API sourcing from FDA-registered facilities inspected within two years, pharmaceutical-grade APIs, and independent quality-control testing. Filed December 10, 2025, pending committee action.", "date": "2025-12-10", "source": "Florida Healthcare Law Firm", "category": "Guidance", "jurisdiction": "state", "date_display": "Dec 10, 2025", "state": "FL"},
-            {"title": "Florida HB 877: Broad State Controls on Compounded Drug Distribution", "url": "https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/amp/", "summary": "Florida HB 877 defines bulk drug substance/API and creates requirements for distribution, recordkeeping, furnishing records to regulators, and limits on advertising and promotion of compounded drugs. Filed December 23, 2025, referred to committee January 5, 2026.", "date": "2025-12-23", "source": "Frier Levitt", "category": "Guidance", "jurisdiction": "state", "date_display": "Dec 23, 2025", "state": "FL"},
-            {"title": "Ohio Board of Pharmacy Issues FAQs for GLP-1 Compounders", "url": "https://www.foley.com/insights/publications/2025/08/glp-1-drugs-ohio-board-pharmacy-issues-faqs-compounders/", "summary": "Ohio Board of Pharmacy guidance states providers should generally use FDA-approved GLP-1 drugs rather than compounded versions. Compounded copies of tirzepatide and semaglutide are not permitted when commercially available. APIs must be purchased from Ohio-licensed distributors.", "date": "2025-08-15", "source": "Foley & Lardner", "category": "Enforcement", "jurisdiction": "state", "date_display": "Aug 15, 2025", "state": "OH"},
-            {"title": "Arizona's Withdrawn GLP-1 Compounding Bill Signals Increased Scrutiny", "url": "https://www.frierlevitt.com/articles/arizona-glp1-compounding-bill-withdrawn-regulatory-scrutiny/", "summary": "Arizona HB 4036 was withdrawn before advancing but its provisions signal heightened legislative scrutiny of GLP-1 compounding. Would have required pharmaceutical-grade bulk drug substances from FDA-inspected facilities, quality control testing, two-year record retention, and advertising disclosures.", "date": "2026-02-20", "source": "Frier Levitt", "category": "Guidance", "jurisdiction": "state", "date_display": "Feb 20, 2026", "state": "AZ"},
-            {"title": "Indiana SB 282: Compounding Oversight and Medical Spa Regulation", "url": "https://a4pc.org/news/state-updates-1", "summary": "Indiana SB 282 would tighten bulk drug substance compounding, expand oversight and recordkeeping, and regulate medical spas through a new registration and enforcement regime. House-amended version passed with companion trailer bill HB 1277 to address amino acid language concerns.", "date": "2026-02-27", "source": "Alliance for Pharmacy Compounding", "category": "Guidance", "jurisdiction": "state", "date_display": "Feb 27, 2026", "state": "IN"},
-            {"title": "Colorado SB 26-066: Compounding Restrictions That Could Limit GLP-1 Access", "url": "https://a4pc.org/news/state-updates-03/27/2026", "summary": "Colorado SB 26-066 scheduled for hearing in Senate Health and Human Services Committee. Although framed as targeting counterfeit drugs, the bill would make it harder for licensed pharmacies to provide compounded GLP-1 medications that many patients rely on.", "date": "2026-03-27", "source": "Alliance for Pharmacy Compounding", "category": "Guidance", "jurisdiction": "state", "date_display": "Mar 27, 2026", "state": "CO"},
-            {"title": "The GLP-1 Drug Boom Has a Dangerous Gray Market: Arizona Lawmakers Should Step In", "url": "https://azmirror.com/2026/02/25/the-glp-1-drug-boom-has-a-dangerous-gray-market-arizona-lawmakers-should-step-in/", "summary": "Investigative report on Arizona's unregulated GLP-1 compounding market and the legislative response. Documents quality and safety concerns as well as the debate between patient access and regulatory oversight at the state level.", "date": "2026-02-25", "source": "Arizona Mirror", "category": "Enforcement", "jurisdiction": "state", "date_display": "Feb 25, 2026", "state": "AZ"},
-            {"title": "Despite FDA Crackdown, Unapproved GLP-1s Still Threaten the Industry", "url": "https://www.healthcare-brew.com/stories/2026/03/23/fda-crackdown-unapproved-glp-1s", "summary": "Despite thousands of warning letters, compounded semaglutide prescriptions continued to increase. About 80% of compounded GLP-1 prescriptions now include supplemental ingredients to argue they aren't exact copies.", "date": "2026-03-23", "source": "Healthcare Brew", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 23, 2026"},
-            {"title": "6 Recent Updates on GLP-1 Drugs", "url": "https://www.beckershospitalreview.com/pharmacy/6-recent-updates-on-glp-1-drugs/", "summary": "Becker's roundup of the latest GLP-1 developments including FDA enforcement actions, Novo Nordisk citizen petition, and compounding deadline updates.", "date": "2026-03-18", "source": "Becker's Hospital Review", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Mar 18, 2026"},
-            {"title": "Peptide Therapy in 2026: From Grey Zone to Guardrails", "url": "https://www.modernclinician.ai/p/26-peptide-therapy-in-2026-from-grey-zone-to-guardrails", "summary": "Analysis of the evolving regulatory landscape for peptide therapy, examining how providers should navigate the gap between announced policy intentions and formal regulatory changes.", "date": "2026-03-15", "source": "Modern Clinician", "category": "Peptides", "jurisdiction": "federal", "date_display": "Mar 15, 2026"},
-            {"title": "The FDA Is Targeting Telehealth Marketing of GLP-1 Drugs. Who's Prescribing Them?", "url": "https://www.statnews.com/2026/03/12/fda-telehealth-marketing-glp1-prescribers-behind-warning-letters/", "summary": "STAT investigation into the prescribers behind telehealth companies receiving FDA warning letters over compounded GLP-1 marketing violations.", "date": "2026-03-12", "source": "STAT News", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 12, 2026"},
-            {"title": "From Crackdown to Collaboration: FDA Warning Letters and the Hims-Novo Nordisk Deal Signal a New Era", "url": "https://www.frierlevitt.com/articles/fda-warning-letters-hims-novo-nordisk-compounded-glp1/", "summary": "Legal analysis of how the simultaneous FDA enforcement crackdown and Hims-Novo partnership may reshape the compounded GLP-1 landscape for telehealth companies and compounding pharmacies.", "date": "2026-03-12", "source": "Frier Levitt", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Mar 12, 2026"},
-            {"title": "The FDA Peptide Reclassification: What Actually Changed in 2026", "url": "https://biostrataresearch.com/research-library/popular-research-topics/the-fda-peptide-reclassification-what-actually-changed-in-2026/", "summary": "Fact-check analysis: no Federal Register notice has been issued broadly removing peptides from Category 2. Official changes expected through formal administrative channels in coming weeks.", "date": "2026-03-10", "source": "BioStrata Research", "category": "Peptides", "jurisdiction": "federal", "date_display": "Mar 10, 2026"},
-            {"title": "Hims & Hers Announces Strategic Shift: Partners with Novo Nordisk, Drops Compounded GLP-1 Marketing", "url": "https://investors.hims.com/news/news-details/2026/Hims--Hers-Announces-Strategic-Shift-for-US-Weight-Loss-Business/default.aspx", "summary": "Hims & Hers will offer Novo Nordisk's branded Ozempic and Wegovy on its platform while ceasing advertising of compounded GLP-1 drugs. Novo Nordisk drops patent infringement lawsuit. Shares surged 36%.", "date": "2026-03-09", "source": "Hims & Hers (IR)", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Mar 09, 2026"},
-            {"title": "Novo and Hims Make Nice, Striking Deal to Sell Ozempic, Wegovy on Hims' Telehealth Platform", "url": "https://www.fiercepharma.com/pharma/novo-and-hims-make-nice-striking-deal-sees-novos-branded-glp-1s-sold-hims-telehealth", "summary": "Detailed analysis of the Novo-Hims partnership signaling a new era where branded and compounded GLP-1s may coexist through regulated channels rather than litigation.", "date": "2026-03-09", "source": "Fierce Pharma", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Mar 09, 2026"},
-            {"title": "FDA Moves to Restrict Mass-Marketed Compounded GLP-1 Products", "url": "https://www.pharmacytimes.com/view/fda-moves-to-restrict-mass-marketed-compounded-glp-1-products", "summary": "FDA announced action to restrict GLP-1 APIs in non-FDA-approved compounded drugs being mass-marketed as alternatives. Violators face seizure or injunction without further notice.", "date": "2026-03-05", "source": "Pharmacy Times", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 05, 2026"},
-            {"title": "FDA Warns 30 Telehealth Companies Against Illegal Marketing of Compounded GLP-1s", "url": "https://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s", "summary": "FDA issued 30 warning letters to telehealth companies for false or misleading claims about compounded GLP-1 products. Letters require corrective steps within 15 working days or risk seizure and injunction.", "date": "2026-03-03", "source": "FDA.gov", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 03, 2026", "id": "art-fda-30-warnings"},
-            {"title": "FDA Ramps Up Crackdown on GLP-1 Drug Compounding with Fresh Batch of 30 Warning Letters", "url": "https://www.fiercepharma.com/pharma/fda-ramps-crackdown-glp-1-drug-compounders-fresh-batch-30-warning-letters", "summary": "Second batch of warning letters targeting companies like Lovely Meds, Hello Cake, and MEDVi. Violations include implying sameness with FDA-approved products and obscuring product sourcing.", "date": "2026-03-03", "source": "Fierce Pharma", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Mar 03, 2026"},
-            {"title": "RFK Jr, Peptides & FDA Category 2: What's Really Changing?", "url": "https://www.lumalexlaw.com/2026/03/02/fda-category-2-peptides-reclassification/", "summary": "Legal analysis clarifying that as of March 2026, no formal FDA rule has changed. The 14 peptides remain Category 2 substances until the FDA formally updates the list through administrative channels.", "date": "2026-03-02", "source": "LumaLex Law", "category": "Peptides", "jurisdiction": "federal", "date_display": "Mar 02, 2026"},
-            {"title": "RFK Jr. Announces Plan to Move 14 Peptides from Category 2 Back to Category 1", "url": "https://amaneciahealth.com/fda-peptide-reclassification-2026-what-patients-need-to-know/", "summary": "HHS Secretary RFK Jr. announced on Feb 27, 2026 that approximately 14 of 19 peptides on the FDA Category 2 restricted list will be moved back to Category 1, restoring access through licensed compounding pharmacies. Includes BPC-157, Thymosin Alpha-1, AOD-9604, Semax, Selank, KPV, and MOTS-C.", "date": "2026-02-27", "source": "Amanecia Health", "category": "Peptides", "jurisdiction": "federal", "date_display": "Feb 27, 2026", "id": "art-rfk-peptides"},
-            {"title": "Don't Use Drug Products Intended to Be Sterile from This Houston Compounding Pharmacy: FDA", "url": "https://www.beckershospitalreview.com/pharmacy/don-t-use-drug-products-intended-to-be-sterile-from-this-houston-compounding-pharmacy-fda/", "summary": "FDA warned healthcare providers and consumers not to use sterile drug products from a Houston compounding pharmacy due to quality and safety concerns.", "date": "2026-02-25", "source": "Becker's Hospital Review", "category": "Compounding", "jurisdiction": "federal", "date_display": "Feb 25, 2026"},
-            {"title": "State and Federal Legislative Changes Reshape Drug Compounding Regulation in 2026", "url": "https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/amp/", "summary": "Overview of recent state and federal legislative developments affecting compounding, including Florida SB 860/HB 877 and California Board of Pharmacy rule changes impacting interstate compounding.", "date": "2026-02-20", "source": "Frier Levitt", "category": "Guidance", "jurisdiction": "federal", "date_display": "Feb 20, 2026"},
-            {"title": "FDA Commissioner Makary Declares Upcoming Crackdown on GLP-1 Claims, Importation", "url": "http://www.mcdermottplus.com/insights/fdas-makary-declares-upcoming-crackdown-on-glp-1-claims-importation/", "summary": "FDA Commissioner Marty Makary stated FDA will focus on importation of unapproved APIs, signaling increased inspection activity, border restrictions, or both for compounding pharmacies.", "date": "2026-02-18", "source": "McDermott+", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Feb 18, 2026"},
-            {"title": "FDA in Flux — February 2026 Newsletter", "url": "https://www.mintz.com/insights-center/viewpoints/2791/2026-02-18-fda-flux-february-2026-newsletter", "summary": "Monthly overview of FDA regulatory developments including compounding enforcement, peptide reclassification discussions, and telehealth advertising crackdowns.", "date": "2026-02-18", "source": "Mintz", "category": "General", "jurisdiction": "federal", "date_display": "Feb 18, 2026"},
-            {"title": "Pennsylvania Compounding Pharmacy Earns Another FDA Warning Letter", "url": "https://www.safemedicines.org/2026/02/february-17.html", "summary": "Boothwyn Pharmacy, LLC cited for sterility failures, subpotent injectable and ophthalmic drugs, and insanitary production conditions.", "date": "2026-02-17", "source": "Partnership for Safe Medicines", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Feb 17, 2026"},
-            {"title": "State Compounding Legislation: Federal Preemption, State Limits and Patient Impact", "url": "https://www.skadden.com/insights/publications/2026/02/state-compounding-legislation", "summary": "Analysis of state-level compounding legislation, including Florida SB 860 and California Board of Pharmacy rules redefining 'essentially a copy' with new API sourcing requirements.", "date": "2026-02-15", "source": "Skadden", "category": "Guidance", "jurisdiction": "federal", "date_display": "Feb 15, 2026"},
-            {"title": "FDA's Overreach on Compounded Peptides: Legal Battles and How Clinics Can Push Back", "url": "https://www.safehg.com/fdas-overreach-on-compounded-peptides-legal-battles-and-how-clinics-can-push-back/", "summary": "Analysis of legal challenges to the FDA's 2023 decision to move 19 peptides to Category 2, and strategies for clinics navigating the current regulatory uncertainty.", "date": "2026-02-10", "source": "Safe HG", "category": "Peptides", "jurisdiction": "federal", "date_display": "Feb 10, 2026"},
-            {"title": "Thinking About Starting a 503B Outsourcing Facility? Here's What You Need to Know", "url": "https://www.frierlevitt.com/articles/thinking-about-starting-a-503b-outsourcing-facility-heres-what-you-need-to-know/", "summary": "Comprehensive regulatory guide for launching a 503B outsourcing facility, covering FDA registration, cGMP requirements, inspection readiness, and the evolving enforcement landscape.", "date": "2026-02-08", "source": "Frier Levitt", "category": "Compounding", "jurisdiction": "federal", "date_display": "Feb 08, 2026"},
-            {"title": "Compounding Pharmacy Sues Eli Lilly, Novo Nordisk over GLP-1 Access", "url": "https://www.beckershospitalreview.com/pharmacy/compounding-pharmacy-sues-eli-lilly-novo-nordisk-over-glp-1-access/", "summary": "Compounding pharmacy files suit against pharmaceutical giants over GLP-1 access restrictions, arguing the companies are using patent litigation to block legitimate compounding activity.", "date": "2026-02-05", "source": "Becker's Hospital Review", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 05, 2026", "id": "art-lilly-novo-suit"},
-            {"title": "FDA Updates Hospital Pharmacy Compounding Rules to Address Potential Shortages", "url": "https://www.beckershospitalreview.com/pharmacy/fda-updates-hospital-pharmacy-compounding-rules-to-address-potential-shortages.html", "summary": "FDA updated guidance to allow small compounding pharmacies to supply hospitals during drug shortages, expanding the role of 503A pharmacies in the supply chain.", "date": "2026-01-28", "source": "Becker's Hospital Review", "category": "Guidance", "jurisdiction": "federal", "date_display": "Jan 28, 2026"},
-            {"title": "FDA Allowing Small Compounding Pharmacies to Supply Hospitals", "url": "https://www.beckershospitalreview.com/pharmacy/fda-allowing-small-compounding-pharmacies-to-supply-hospitals.html", "summary": "FDA expanded the role of 503A compounding pharmacies to help address hospital drug shortage needs through updated guidance.", "date": "2026-01-28", "source": "Becker's Hospital Review", "category": "Compounding", "jurisdiction": "federal", "date_display": "Jan 28, 2026"},
-            {"title": "Navigating the FDA's Final Interim Policy on Compounding with Bulk Drug Substances", "url": "https://www.bipc.com/navigating-the-fda-final-interim-policy-on-compounding-with-bulk-drug-substances-a-guide-for-503a-pharmacies-and-503b-outsourcing-facilities", "summary": "Detailed guide for 503A pharmacies and 503B outsourcing facilities on navigating the FDA's final interim policy, including compliance requirements, Category 1/2 distinctions, and enforcement discretion.", "date": "2026-01-22", "source": "Buchanan Ingersoll & Rooney", "category": "Guidance", "jurisdiction": "federal", "date_display": "Jan 22, 2026"},
-            {"title": "Deep Dive: Regulatory Status of Popular Compounded Peptides", "url": "https://djholtlaw.com/deep-dive-regulatory-status-of-popular-compounded-peptides/", "summary": "Comprehensive legal analysis of the regulatory status of each commonly compounded peptide, including BPC-157, TB-500, and Thymosin Alpha-1 under current FDA framework.", "date": "2026-01-20", "source": "Holt Law", "category": "Peptides", "jurisdiction": "federal", "date_display": "Jan 20, 2026"},
-            {"title": "Best GLP-1 Telehealth Platforms (2026): Launch & Scale D2C Programs", "url": "https://www.telehealthtech.org/lists/best-glp-1-telehealth-platforms-2026", "summary": "Comprehensive comparison of white-label telehealth platforms for GLP-1 programs including Bask Health, Wheel, and CareValidate with launch timelines of 2-8 weeks.", "date": "2026-02-01", "source": "TelehealthTech", "category": "Telehealth", "jurisdiction": "federal", "date_display": "Feb 01, 2026"},
-            {"title": "FDA Probes Compounding Pharmacies over Quality Concerns", "url": "https://www.beckershospitalreview.com/pharmacy/fda-probes-compounding-pharmacies-over-quality-concerns/", "summary": "FDA plans to gather information from 250 compounding outsourcing pharmacies amid safety and quality concerns, surveying facilities about market viability, compliance, and quality production.", "date": "2026-01-15", "source": "Becker's Hospital Review", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Jan 15, 2026"},
-            {"title": "FDA Enforcement Review: Looking Back at 2025 and Bracing for Continued Unpredictability in 2026", "url": "https://www.ropesgray.com/en/insights/alerts/2026/01/fda-enforcement-review-looking-back-at-2025-and-bracing-for-continued-unpredictability-in-2026", "summary": "Comprehensive review of FDA enforcement trends, including the unprecedented wave of advertising enforcement letters and the evolving approach to compounding oversight under Commissioner Makary.", "date": "2026-01-15", "source": "Ropes & Gray", "category": "Enforcement", "jurisdiction": "federal", "date_display": "Jan 15, 2026"},
-            {"title": "2025 Year in Review: FDA Drug and Device Advertising and Promotion Enforcement", "url": "https://www.kslaw.com/news-and-insights/2025-year-in-review-fda-drug-and-device-advertising-and-promotion-enforcement", "summary": "Total enforcement letters for pharmaceutical advertising violations marked the highest annual total in nearly 25 years, driven heavily by compounded GLP-1 and telehealth enforcement.", "date": "2026-01-10", "source": "King & Spalding", "category": "Advertising", "jurisdiction": "federal", "date_display": "Jan 10, 2026"},
-            {"title": "Navigating 503B Outsourcing Trends and 2026 Outlook", "url": "https://www.barringtonjames.com/resources/blog/navigating-503b-outsourcing-trends-and-2026-outlook-/", "summary": "503B facility outlook: more than half have not been inspected since the pandemic. An inspection wave is likely in 2026. FDA enforcement discretion for semaglutide and tirzepatide under final review.", "date": "2026-01-10", "source": "Barrington James", "category": "Drug Supply", "jurisdiction": "federal", "date_display": "Jan 10, 2026"},
-            {"title": "FDA Takes Aim at Drug Ads: What It Means for Compounding Pharmacies, Medspas and Telehealth Companies", "url": "https://natlawreview.com/article/fda-takes-aim-drug-ads-what-it-means-compounding-pharmacies-medspas-and-telehealth", "summary": "Analysis of FDA's enforcement initiative against misleading advertising in compounded drugs, including claims about 'generic' or 'clinically proven' versions of approved GLP-1 therapies.", "date": "2026-01-08", "source": "National Law Review", "category": "Advertising", "jurisdiction": "federal", "date_display": "Jan 08, 2026"},
-            {"title": "Drug Approvals to Watch in 2026", "url": "https://www.beckershospitalreview.com/pharmacy/drug-approvals-to-watch-in-2026/", "summary": "Orforglipron, a once-daily oral GLP-1 receptor agonist, is under FDA priority review with a decision expected in March 2026. Could reshape the compounding landscape further.", "date": "2026-01-05", "source": "Becker's Hospital Review", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Jan 05, 2026"},
-            {"title": "FDA Approves First GLP-1 Pill for Obesity from Novo Nordisk", "url": "https://www.cnbc.com/2025/12/22/fda-approves-first-glp-1-pill-for-obesity-from-novo-nordisk.html", "summary": "FDA approved Novo Nordisk's 25 mg oral Wegovy, the first FDA-approved oral GLP-1 therapy for chronic weight management in adults. Major milestone that may further impact the compounding landscape.", "date": "2025-12-22", "source": "CNBC", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Dec 22, 2025", "id": "art-oral-wegovy"},
-            {"title": "Bask Health: Pioneering Telehealth and Transforming Access to GLP-1 Medications", "url": "https://www.prnewswire.com/news-releases/bask-health-pioneering-telehealth-and-transforming-access-to-glp-1-medications-in-a-booming-industry-302324056.html", "summary": "Bask Health's white-label platform combines EMR, e-prescribing, pharmacy fulfillment, and nationwide clinician network for GLP-1, TRT, ED, and peptide programs across all 50 states.", "date": "2025-12-10", "source": "PR Newswire", "category": "Telehealth", "jurisdiction": "federal", "date_display": "Dec 10, 2025"},
-            {"title": "Congress Introduces SAFE Drugs Act of 2025, Expanding FDA Oversight of Compounded GLP-1 Drugs and Telehealth", "url": "https://www.dykema.com/news-insights/congress-introduces-safe-drugs-act-of-2025-expanding-fda-oversight-of-compounded-glp-1-drugs-and-telehealth-providers.html", "summary": "H.R. 6509 introduced Dec 9, 2025. Requires pre-compounding inspections for 503B facilities, biennial re-inspections for high-volume compounders, reporting for interstate shipments exceeding 20 Rx/drug, and codifies 'essentially a copy' definition.", "date": "2025-12-09", "source": "Dykema", "category": "Guidance", "jurisdiction": "federal", "date_display": "Dec 09, 2025", "id": "art-safe-drugs-act"},
-            {"title": "SAFE Drugs Act of 2025 — Full Text (H.R. 6509)", "url": "https://www.congress.gov/bill/119th-congress/house-bill/6509/text", "summary": "Full text of the SAFE Drugs Act proposing expanded FDA oversight of compounding pharmacies, outsourcing facilities, and telehealth distribution models for compounded drugs.", "date": "2025-12-09", "source": "Congress.gov", "category": "Guidance", "jurisdiction": "federal", "date_display": "Dec 09, 2025"},
-            {"title": "Federal Register: Human Drug Compounding Under Sections 503A and 503B — Proposed Collection Request", "url": "https://www.federalregister.gov/documents/2025/11/24/2025-20773/agency-information-collection-activities-proposed-collection-comment-request-human-drug-compounding", "summary": "FDA proposes to gather information from 250 compounding outsourcing facilities on challenges related to market viability, compliance, quality production, and FDA interactions.", "date": "2025-11-24", "source": "Federal Register", "category": "Guidance", "jurisdiction": "federal", "date_display": "Nov 24, 2025"},
-            {"title": "U.S. House Introduces Bill to Expand Compounding During Drug Shortages", "url": "https://www.thefdalawblog.com/2025/10/the-u-s-house-introduces-bill-to-expand-compounding-during-drug-shortages-provide-clarity-on-bulk-substance-usp-nf-monograph-definition-and-get-rid-of-section-503as-tortu/", "summary": "Proposed legislation to expand compounding during drug shortages, provide clarity on bulk substance USP/NF monograph definitions, and reform Section 503A's memorandum of understanding provisions.", "date": "2025-10-15", "source": "The FDA Law Blog", "category": "Guidance", "jurisdiction": "federal", "date_display": "Oct 15, 2025"},
-            {"title": "FY 2026 Outsourcing Facility Registration and Fee Information", "url": "https://www.fda.gov/industry/fda-user-fee-programs/human-drug-compounding-outsourcing-facility-fees", "summary": "FY 2026 registration period for outsourcing facilities runs Oct 1, 2025 through Dec 31, 2026. Fee rates published in Federal Register on July 30, 2025.", "date": "2025-10-01", "source": "FDA.gov", "category": "Compounding", "jurisdiction": "federal", "date_display": "Oct 01, 2025"},
-            {"title": "FDA, HHS Taking Action Against Telehealth's Compounded Drug Advertising", "url": "https://www.hklaw.com/en/insights/publications/2025/09/fda-hhs-taking-action-against-telehealths-compounded-drug-advertising", "summary": "FDA and HHS launched an enforcement initiative targeting misleading advertising in the compounded drug space, flagging claims implying equivalence to FDA-approved products.", "date": "2025-09-15", "source": "Holland & Knight", "category": "Advertising", "jurisdiction": "federal", "date_display": "Sep 15, 2025"},
-            {"title": "Companies Find Ways Around End of GLP-1 Shortage", "url": "https://www.advisory.com/daily-briefing/2025/05/27/glp-1-compounders", "summary": "Despite shortages being resolved, compounders continued operations by adding supplemental ingredients or altering dosage forms to argue products aren't 'essentially copies' of FDA-approved drugs.", "date": "2025-05-27", "source": "Advisory Board", "category": "Drug Supply", "jurisdiction": "federal", "date_display": "May 27, 2025"},
-            {"title": "Semaglutide Shortage Resolved — What It Means for Compounders", "url": "https://www.mwe.com/insights/semaglutide-shortage-resolved/", "summary": "FDA declared semaglutide shortage resolved on Feb 21, 2025. 503A pharmacies had until April 22, 2025 to cease compounding. 503B outsourcing facilities until May 22, 2025.", "date": "2025-03-01", "source": "McDermott Will & Emery", "category": "Drug Supply", "jurisdiction": "federal", "date_display": "Mar 01, 2025"},
-            {"title": "FDA Clarifies Policies for Compounders as National GLP-1 Supply Begins to Stabilize", "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize", "summary": "FDA formally clarified enforcement discretion timelines: 503A pharmacies must cease compounding semaglutide by April 22, 2025. 503B outsourcing facilities by May 22, 2025.", "date": "2025-02-21", "source": "FDA.gov", "category": "GLP-1", "jurisdiction": "federal", "date_display": "Feb 21, 2025", "id": "art-fda-semaglutide-resolved"},
-            {"title": "FDA Releases Revised Guidance for Compounding Pharmacies on Bulk Drug Substances", "url": "https://ncpa.org/newsroom/qam/2025/01/13/fda-releases-guidance-compounding-pharmacies", "summary": "Under revised guidance, 503A pharmacies can compound Category 1 substances but cannot compound substances without USP monographs (like most peptides) until further review. 503B facilities limited to Category 1 bulk list or FDA-approved drugs in shortage.", "date": "2025-01-13", "source": "NCPA", "category": "Guidance", "jurisdiction": "federal", "date_display": "Jan 13, 2025"}
-        ];
+            {
+                        "title": "The Government's Warning Shot? FDA and HHS Turn Up the Pressure on Compounding",
+                        "url": "https://www.thefdalawblog.com/2026/02/the-governments-warning-shot-fda-and-hhs-turn-up-the-pressure-on-compounding/",
+                        "summary": "Hyman, Phelps and McNamara analysis of whether compounders are on notice after FDA's February 2026 enforcement escalation. The article examines whether the FDA may be preparing to pursue at least one compounder through the Department of Justice, particularly after the HHS General Counsel's referral of Hims to the DOJ.",
+                        "date": "2026-02-23",
+                        "source": "FDA Law Blog (HP&M)",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 23, 2026",
+                        "id": "art-106080c3c9f4"
+            },
+            {
+                        "title": "FDA Tightens the Belt on GLP-1 Compounding, Escalating Threat of Enforcement",
+                        "url": "https://natlawreview.com/article/fda-tightens-belt-glp-1-compounding-escalating-threat-enforcement",
+                        "summary": "Analysis of FDA's escalating enforcement posture. High-volume, standardized formulation, and national distribution are no longer being treated as aggressive compounding but as manufacturing. 503A pharmacies must remain patient-specific in both form and reality.",
+                        "date": "2026-03-04",
+                        "source": "National Law Review",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 04, 2026",
+                        "id": "art-2e40fcca311a"
+            },
+            {
+                        "title": "Does GLP-1 Compounding Foretell Patent Enforcement Outside the Hatch-Waxman Framework?",
+                        "url": "https://www.morganlewis.com/pubs/2026/02/does-glp-1-compounding-foretell-patent-enforcement-outside-the-hatch-waxman-framework",
+                        "summary": "Morgan Lewis analysis of how patent enforcement against compounders differs from traditional Hatch-Waxman litigation. The automatic 30-month stay would not apply against compounders. Branded companies would need to prove entitlement to preliminary injunction, shifting litigation focus to damages.",
+                        "date": "2026-02-14",
+                        "source": "Morgan Lewis",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 14, 2026",
+                        "id": "art-2331b4279797"
+            },
+            {
+                        "title": "FDA's Latest GLP-1 Crackdown: What Compounders and Telehealth Platforms Need to Know",
+                        "url": "https://www.venable.com/insights/publications/2026/03/fdas-latest-glp-1-crackdown-what-compounders",
+                        "summary": "Venable analysis noting that unsafe compounding threatens the reputation of compounding done safely. Compounding is intended to be specialized to an individual patient, but it becomes a gray area when mass-produced and mass-distributed.",
+                        "date": "2026-03-05",
+                        "source": "Venable LLP",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 05, 2026",
+                        "id": "art-5e91706c1ef8"
+            },
+            {
+                        "title": "APC CEO Statement on FDA's Announced Intention to Restrict GLP-1 APIs",
+                        "url": "https://a4pc.org/news/apc-ceo-statement-fda-hims-02062026",
+                        "summary": "Alliance for Pharmacy Compounding CEO Scott Brunner responds to FDA's GLP-1 API restriction announcement. Notes that over four years of compounded GLP-1 activity, FDA had not asserted that semaglutide or tirzepatide APIs used by drugmakers are superior to or different from those used by compounding pharmacies.",
+                        "date": "2026-02-06",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 06, 2026",
+                        "id": "art-3461222426b0"
+            },
+            {
+                        "title": "APC Releases 2025-2026 Snapshot of Pharmacy Compounding in America",
+                        "url": "https://a4pc.org/news/apc-releases-the-2025-2026-snapshot-of-pharmacy-compounding-in-america-key-trends-and-insights",
+                        "summary": "Alliance for Pharmacy Compounding publishes comprehensive industry survey covering compounding volumes, market trends, regulatory compliance challenges, and the shifting landscape for 503A and 503B facilities nationwide.",
+                        "date": "2026-01-20",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 20, 2026",
+                        "id": "art-ed867f8432b0"
+            },
+            {
+                        "title": "APC Releases 14-Point Blueprint for Smarter Federal Regulation of Compounding",
+                        "url": "https://a4pc.org/news/apc-releases-12-point-blueprint-for-smarter-streamlined-federal-regulation-to-protect-patient-access-to-compounded-medications",
+                        "summary": "APC proposes a 14-point regulatory blueprint to streamline federal oversight of compounding while protecting patient access. Recommendations address FDA inspection processes, bulk drug substance policies, and interstate compounding frameworks.",
+                        "date": "2026-01-10",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 10, 2026",
+                        "id": "art-10f1ed57126a"
+            },
+            {
+                        "title": "Hims Cancels Plans to Sell Compounded GLP-1 Pill After FDA Backlash",
+                        "url": "https://www.biopharmadive.com/news/hims-stop-launch-compounded-wegovy-fda-novo/811662/",
+                        "summary": "Hims abandoned plans to sell a compounded version of oral Wegovy following backlash from FDA Commissioner Makary, who threatened swift action against companies mass-marketing illegal copycat drugs. Novo Nordisk's testing found impurities of up to 86% in compounded injectable semaglutide and up to 75% in oral versions.",
+                        "date": "2026-02-08",
+                        "source": "BioPharma Dive",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 08, 2026",
+                        "id": "art-3cae83215d91"
+            },
+            {
+                        "title": "Novo Nordisk Sues Hims & Hers Over Compounded Obesity Drugs",
+                        "url": "https://www.cnbc.com/2026/02/09/novo-nordisk-sues-hims-hers-compounded-obesity-drugs.html",
+                        "summary": "Novo Nordisk filed patent infringement lawsuit against Hims for US Patent 8,129,343 over compounded semaglutide products. Sought permanent ban on Hims selling compounded versions and recovery of damages. Later settled via partnership agreement in March 2026.",
+                        "date": "2026-02-09",
+                        "source": "CNBC",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 09, 2026",
+                        "id": "art-152b5e7e8a24"
+            },
+            {
+                        "title": "U.S. Signals Crackdown on Compounded Weight-Loss Drugs",
+                        "url": "https://www.cnbc.com/2026/02/06/fda-to-restrict-glp-1-ingredients-used-in-nonapproved-compounded-drugs.html",
+                        "summary": "FDA announced it would restrict GLP-1 APIs in non-approved compounded drugs. On the same day, HHS General Counsel referred Hims to the DOJ for investigation of potential federal law violations. Hims shares tumbled on the news.",
+                        "date": "2026-02-06",
+                        "source": "CNBC",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 06, 2026",
+                        "id": "art-71160e84eb6e"
+            },
+            {
+                        "title": "Eli Lilly Warns Compounded GLP-1 Knockoffs May Be Dangerous",
+                        "url": "https://www.biopharmadive.com/news/lilly-obesity-zepbound-compounder-fda-impurity-/814536/",
+                        "summary": "Eli Lilly issued open letter warning that compounded tirzepatide with vitamin B12 contains significant levels of an unknown impurity from a chemical reaction between the two substances. Also found bacterial contamination, high endotoxin levels, and other impurities in compounded knockoffs.",
+                        "date": "2026-03-13",
+                        "source": "BioPharma Dive",
+                        "category": "Drug Supply",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 13, 2026",
+                        "id": "art-1e64eec3d7cc"
+            },
+            {
+                        "title": "FDA to Restrict Ingredients Used in Mass-Marketed Compounded GLP-1s, Crack Down on Misleading Ads",
+                        "url": "https://www.ajmc.com/view/fda-to-restrict-ingredients-used-in-mass-marketed-compounded-glp-1s-crack-down-on-misleading-ads",
+                        "summary": "AJMC coverage of FDA's dual-pronged enforcement strategy: restricting GLP-1 APIs in mass-marketed compounded products while simultaneously cracking down on misleading direct-to-consumer advertising. Over the past six months, the agency sent thousands of warning letters.",
+                        "date": "2026-02-07",
+                        "source": "AJMC",
+                        "category": "Advertising",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 07, 2026",
+                        "id": "art-60bde3096c5d"
+            },
+            {
+                        "title": "Oral Semaglutide and the GLP-1 Compounding Reckoning",
+                        "url": "https://www.bipc.com/oral-semaglutide-and-the-glp-1-compounding-reckoning-from-regulatory-ambiguity-to-fda-enforcement,-doj-referrals,-and-novo-nordisk%E2%80%99s-case-against-hims-and-hers",
+                        "summary": "Buchanan Ingersoll analysis tracing the arc from regulatory ambiguity to FDA enforcement, DOJ referrals, and the Novo Nordisk case against Hims. Examines how the oral semaglutide approval transformed the enforcement landscape for compounders.",
+                        "date": "2026-02-12",
+                        "source": "Buchanan Ingersoll & Rooney",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 12, 2026",
+                        "id": "art-7e1479a11f21"
+            },
+            {
+                        "title": "The Government May Soon Lift Restrictions on Some Peptide Treatments",
+                        "url": "https://www.npr.org/2026/03/26/nx-s1-5758017/the-government-may-soon-lift-restrictions-on-some-peptide-treatments",
+                        "summary": "NPR reports that because of FDA restrictions, patients have turned to unregulated overseas suppliers, presenting new safety dangers from potentially adulterated products. HHS has not provided a specific timeline for formal reclassification.",
+                        "date": "2026-03-26",
+                        "source": "NPR",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 26, 2026",
+                        "id": "art-70c6c86c5359"
+            },
+            {
+                        "title": "FDA Removes Certain Peptide Bulk Drug Substances from Category 2, Sets PCAC Review Dates",
+                        "url": "https://www.lexology.com/library/detail.aspx?g=2e55b76a-3173-4e04-beda-bf021202f18d",
+                        "summary": "Five peptides (AOD-9604, CJC-1295, ipamorelin acetate, thymosin alpha-1, Selank acetate) removed from Category 2 as of September 27, 2024 based on nominators' withdrawal. PCAC voted against inclusion of ipamorelin, CJC-1295, AOD-9604, and thymosin alpha-1 in the 503A bulks regulation.",
+                        "date": "2025-10-01",
+                        "source": "Lexology",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Oct 01, 2025",
+                        "id": "art-490254605b31"
+            },
+            {
+                        "title": "The Peptide Landscape Is Shifting: What RFK Jr.'s Announcement Could Mean for Compounding",
+                        "url": "https://www.frierlevitt.com/articles/fda-peptide-regulation-rfk-announcement-compounding-pharmacies/",
+                        "summary": "Frier Levitt analysis of the implications of RFK Jr.'s peptide reclassification announcement for compounding pharmacies. Examines the gap between the policy announcement and formal regulatory action, and what pharmacies should do in the interim.",
+                        "date": "2026-03-05",
+                        "source": "Frier Levitt",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 05, 2026",
+                        "id": "art-21023dc5ee5c"
+            },
+            {
+                        "title": "Hims Faces Regulatory and Legal Risks in GLP-1 Business Expansion",
+                        "url": "https://www.globalbankingandfinance.com/analysis-hims-expansion-come-time-risky-glp-1-business/",
+                        "summary": "Financial analysis of Hims regulatory exposure including SEC Division of Enforcement investigation into public statements and disclosures regarding compounded semaglutide and related business relationships.",
+                        "date": "2026-02-15",
+                        "source": "Global Banking & Finance",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 15, 2026",
+                        "id": "art-81bb50453504"
+            },
+            {
+                        "title": "GLP-1 Receptor Agonists: Drug Litigation Overview and Trends",
+                        "url": "https://www.foley.com/insights/publications/2025/04/glp-1-receptor-agonists-drug-litigation-overview-trends/",
+                        "summary": "Foley and Lardner comprehensive overview of GLP-1 litigation landscape covering patent disputes, FDA enforcement actions, ITC proceedings, and state-level regulatory challenges facing compounders.",
+                        "date": "2025-10-10",
+                        "source": "Foley & Lardner",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Oct 10, 2025",
+                        "id": "art-d3fc05ff85b3"
+            },
+            {
+                        "title": "Why the FDA Issued 30 Warning Letters to Telehealth Sites Marketing Compounded GLP-1s",
+                        "url": "https://www.pharmtech.com/view/why-the-fda-issued-30-warning-letters-to-telehealth-sites-marketing-compounded-glp-1s",
+                        "summary": "Pharmaceutical Technology analysis of the specific violations cited in the March 2026 warning letters, including claims implying FDA approval, obscuring compounding sources, and using brand-adjacent naming conventions.",
+                        "date": "2026-03-06",
+                        "source": "Pharmaceutical Technology",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 06, 2026",
+                        "id": "art-9def358a318a"
+            },
+            {
+                        "title": "Compounded GLP-1s: Filling a Medical Need But Posing What Dangers?",
+                        "url": "https://www.healthlawpolicy.org/2026/03/02/compounded-glp-1s-filling-a-medical-need-but-posing-what-dangers/",
+                        "summary": "Health Law and Policy Brief analysis examining the tension between patient access and safety concerns in the compounded GLP-1 market, including cold-chain integrity vulnerabilities and fraud risks from counterfeit products.",
+                        "date": "2026-03-02",
+                        "source": "Health Law & Policy Brief",
+                        "category": "Drug Supply",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 02, 2026",
+                        "id": "art-c7992b4c8916"
+            },
+            {
+                        "title": "FDA Reaffirms Strict Regulations Amid GLP-1 Compounding Concerns",
+                        "url": "https://www.drugtopics.com/view/fda-reaffirms-strict-regulations-amid-glp-1-compounding-concerns",
+                        "summary": "Drug Topics reports that high-volume, standardized formulation, and national distribution are now being treated as manufacturing rather than compounding. 503A pharmacies must remain patient-specific in both form and reality or face enforcement.",
+                        "date": "2026-02-20",
+                        "source": "Drug Topics",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 20, 2026",
+                        "id": "art-0f2be73eb259"
+            },
+            {
+                        "title": "Compounded GLP-1 Drugs: Texas Judge Denies PI Motion, Plaintiff OFA Appeals",
+                        "url": "https://www.foley.com/insights/publications/2025/03/compounded-glp-1-drugs-texas-judge-denies-pi-motion/",
+                        "summary": "U.S. District Court in Northern District of Texas ruled in favor of FDA, denying Outsourcing Facilities Association motion for preliminary injunction regarding tirzepatide compounding. OFA filed interlocutory appeal to the Fifth Circuit on March 10, 2025.",
+                        "date": "2025-03-05",
+                        "source": "Foley & Lardner",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 05, 2025",
+                        "id": "art-e064f614a70f"
+            },
+            {
+                        "title": "California Board of Pharmacy's New 'Essentially a Copy' Rules: What GLP-1 Compounders Need to Know",
+                        "url": "https://www.frierlevitt.com/articles/california-board-of-pharmacys-new-essentially-a-copy-rules-what-glp-1-compounders-need-to-know/",
+                        "summary": "California's new rules define a compounded drug as 'essentially a copy' if it contains the same API unless a change produces a 'clinically significant difference' verified and documented by the pharmacist. The Board has not issued formal guidance defining what constitutes sufficient evidence.",
+                        "date": "2026-01-15",
+                        "source": "Frier Levitt",
+                        "category": "Guidance",
+                        "jurisdiction": "state",
+                        "date_display": "Jan 15, 2026",
+                        "state": "CA",
+                        "id": "art-aa1d54f279a7"
+            },
+            {
+                        "title": "California SB 282: New Compounding and Medical Spa Regulation",
+                        "url": "https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/",
+                        "summary": "Introduced January 2026, California SB 282 would tighten state controls on drug compounding and create a new registration and enforcement framework for medical spas. Effective July 1, 2026, the bill would restrict compounding using bulk drug substances unless specified statutory requirements are met.",
+                        "date": "2026-01-25",
+                        "source": "Frier Levitt",
+                        "category": "Guidance",
+                        "jurisdiction": "state",
+                        "date_display": "Jan 25, 2026",
+                        "state": "CA",
+                        "id": "art-20b88c5b922d"
+            },
+            {
+                        "title": "Florida SB 860: A New Playbook for Weight-Loss Compounding",
+                        "url": "https://floridahealthcarelawfirm.com/floridas-sb-860-a-new-playbook-for-weight-loss-compounding/",
+                        "summary": "Florida SB 860 would specifically regulate compounded drugs for weight loss, requiring API sourcing from FDA-registered facilities inspected within two years, pharmaceutical-grade APIs, and independent quality-control testing. Filed December 10, 2025, pending committee action.",
+                        "date": "2025-12-10",
+                        "source": "Florida Healthcare Law Firm",
+                        "category": "Guidance",
+                        "jurisdiction": "state",
+                        "date_display": "Dec 10, 2025",
+                        "state": "FL",
+                        "id": "art-2b8ba19c90d8"
+            },
+            {
+                        "title": "State and Federal Legislative Changes Reshape Drug Compounding Regulation in 2026",
+                        "url": "https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/amp/",
+                        "summary": "Overview of recent state and federal legislative developments affecting compounding, including Florida SB 860/HB 877 and California Board of Pharmacy rule changes impacting interstate compounding.",
+                        "date": "2026-02-20",
+                        "source": "Frier Levitt",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 20, 2026",
+                        "id": "art-626da76eff37"
+            },
+            {
+                        "title": "Ohio Board of Pharmacy Issues FAQs for GLP-1 Compounders",
+                        "url": "https://www.foley.com/insights/publications/2025/08/glp-1-drugs-ohio-board-pharmacy-issues-faqs-compounders/",
+                        "summary": "Ohio Board of Pharmacy guidance states providers should generally use FDA-approved GLP-1 drugs rather than compounded versions. Compounded copies of tirzepatide and semaglutide are not permitted when commercially available. APIs must be purchased from Ohio-licensed distributors.",
+                        "date": "2025-08-15",
+                        "source": "Foley & Lardner",
+                        "category": "Enforcement",
+                        "jurisdiction": "state",
+                        "date_display": "Aug 15, 2025",
+                        "state": "OH",
+                        "id": "art-f16026d10a8c"
+            },
+            {
+                        "title": "Arizona's Withdrawn GLP-1 Compounding Bill Signals Increased Scrutiny",
+                        "url": "https://www.frierlevitt.com/articles/arizona-glp1-compounding-bill-withdrawn-regulatory-scrutiny/",
+                        "summary": "Arizona HB 4036 was withdrawn before advancing but its provisions signal heightened legislative scrutiny of GLP-1 compounding. Would have required pharmaceutical-grade bulk drug substances from FDA-inspected facilities, quality control testing, two-year record retention, and advertising disclosures.",
+                        "date": "2026-02-20",
+                        "source": "Frier Levitt",
+                        "category": "Guidance",
+                        "jurisdiction": "state",
+                        "date_display": "Feb 20, 2026",
+                        "state": "AZ",
+                        "id": "art-7b6ca4bb5021"
+            },
+            {
+                        "title": "Indiana SB 282: Compounding Oversight and Medical Spa Regulation",
+                        "url": "https://a4pc.org/news/state-updates-1",
+                        "summary": "Indiana SB 282 would tighten bulk drug substance compounding, expand oversight and recordkeeping, and regulate medical spas through a new registration and enforcement regime. House-amended version passed with companion trailer bill HB 1277 to address amino acid language concerns.",
+                        "date": "2026-02-27",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Guidance",
+                        "jurisdiction": "state",
+                        "date_display": "Feb 27, 2026",
+                        "state": "IN",
+                        "id": "art-86a9b731a3c7"
+            },
+            {
+                        "title": "Colorado SB 26-066: Compounding Restrictions That Could Limit GLP-1 Access",
+                        "url": "https://a4pc.org/news/state-updates-03/27/2026",
+                        "summary": "Colorado SB 26-066 scheduled for hearing in Senate Health and Human Services Committee. Although framed as targeting counterfeit drugs, the bill would make it harder for licensed pharmacies to provide compounded GLP-1 medications that many patients rely on.",
+                        "date": "2026-03-27",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Guidance",
+                        "jurisdiction": "state",
+                        "date_display": "Mar 27, 2026",
+                        "state": "CO",
+                        "id": "art-0140df6c9309"
+            },
+            {
+                        "title": "The GLP-1 Drug Boom Has a Dangerous Gray Market: Arizona Lawmakers Should Step In",
+                        "url": "https://azmirror.com/2026/02/25/the-glp-1-drug-boom-has-a-dangerous-gray-market-arizona-lawmakers-should-step-in/",
+                        "summary": "Investigative report on Arizona's unregulated GLP-1 compounding market and the legislative response. Documents quality and safety concerns as well as the debate between patient access and regulatory oversight at the state level.",
+                        "date": "2026-02-25",
+                        "source": "Arizona Mirror",
+                        "category": "Enforcement",
+                        "jurisdiction": "state",
+                        "date_display": "Feb 25, 2026",
+                        "state": "AZ",
+                        "id": "art-cc6779fbd332"
+            },
+            {
+                        "title": "Despite FDA Crackdown, Unapproved GLP-1s Still Threaten the Industry",
+                        "url": "https://www.healthcare-brew.com/stories/2026/03/23/fda-crackdown-unapproved-glp-1s",
+                        "summary": "Despite thousands of warning letters, compounded semaglutide prescriptions continued to increase. About 80% of compounded GLP-1 prescriptions now include supplemental ingredients to argue they aren't exact copies.",
+                        "date": "2026-03-23",
+                        "source": "Healthcare Brew",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 23, 2026",
+                        "id": "art-c1c83575276e"
+            },
+            {
+                        "title": "6 Recent Updates on GLP-1 Drugs",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/6-recent-updates-on-glp-1-drugs/",
+                        "summary": "Becker's roundup of the latest GLP-1 developments including FDA enforcement actions, Novo Nordisk citizen petition, and compounding deadline updates.",
+                        "date": "2026-03-18",
+                        "source": "Becker's Hospital Review",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 18, 2026",
+                        "id": "art-853ac744d974"
+            },
+            {
+                        "title": "Peptide Therapy in 2026: From Grey Zone to Guardrails",
+                        "url": "https://www.modernclinician.ai/p/26-peptide-therapy-in-2026-from-grey-zone-to-guardrails",
+                        "summary": "Analysis of the evolving regulatory landscape for peptide therapy, examining how providers should navigate the gap between announced policy intentions and formal regulatory changes.",
+                        "date": "2026-03-15",
+                        "source": "Modern Clinician",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 15, 2026",
+                        "id": "art-623967b69cb2"
+            },
+            {
+                        "title": "The FDA Is Targeting Telehealth Marketing of GLP-1 Drugs. Who's Prescribing Them?",
+                        "url": "https://www.statnews.com/2026/03/12/fda-telehealth-marketing-glp1-prescribers-behind-warning-letters/",
+                        "summary": "STAT investigation into the prescribers behind telehealth companies receiving FDA warning letters over compounded GLP-1 marketing violations.",
+                        "date": "2026-03-12",
+                        "source": "STAT News",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 12, 2026",
+                        "id": "art-352711238626"
+            },
+            {
+                        "title": "From Crackdown to Collaboration: FDA Warning Letters and the Hims-Novo Nordisk Deal Signal a New Era",
+                        "url": "https://www.frierlevitt.com/articles/fda-warning-letters-hims-novo-nordisk-compounded-glp1/",
+                        "summary": "Legal analysis of how the simultaneous FDA enforcement crackdown and Hims-Novo partnership may reshape the compounded GLP-1 landscape for telehealth companies and compounding pharmacies.",
+                        "date": "2026-03-12",
+                        "source": "Frier Levitt",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 12, 2026",
+                        "id": "art-8d64400357eb"
+            },
+            {
+                        "title": "The FDA Peptide Reclassification: What Actually Changed in 2026",
+                        "url": "https://biostrataresearch.com/research-library/popular-research-topics/the-fda-peptide-reclassification-what-actually-changed-in-2026/",
+                        "summary": "Fact-check analysis: no Federal Register notice has been issued broadly removing peptides from Category 2. Official changes expected through formal administrative channels in coming weeks.",
+                        "date": "2026-03-10",
+                        "source": "BioStrata Research",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 10, 2026",
+                        "id": "art-ec51a4bae257"
+            },
+            {
+                        "title": "Hims & Hers Announces Strategic Shift: Partners with Novo Nordisk, Drops Compounded GLP-1 Marketing",
+                        "url": "https://investors.hims.com/news/news-details/2026/Hims--Hers-Announces-Strategic-Shift-for-US-Weight-Loss-Business/default.aspx",
+                        "summary": "Hims & Hers will offer Novo Nordisk's branded Ozempic and Wegovy on its platform while ceasing advertising of compounded GLP-1 drugs. Novo Nordisk drops patent infringement lawsuit. Shares surged 36%.",
+                        "date": "2026-03-09",
+                        "source": "Hims & Hers (IR)",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 09, 2026",
+                        "id": "art-63a0dcf545b5"
+            },
+            {
+                        "title": "Novo and Hims Make Nice, Striking Deal to Sell Ozempic, Wegovy on Hims' Telehealth Platform",
+                        "url": "https://www.fiercepharma.com/pharma/novo-and-hims-make-nice-striking-deal-sees-novos-branded-glp-1s-sold-hims-telehealth",
+                        "summary": "Detailed analysis of the Novo-Hims partnership signaling a new era where branded and compounded GLP-1s may coexist through regulated channels rather than litigation.",
+                        "date": "2026-03-09",
+                        "source": "Fierce Pharma",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 09, 2026",
+                        "id": "art-6cefb237e13b"
+            },
+            {
+                        "title": "FDA Moves to Restrict Mass-Marketed Compounded GLP-1 Products",
+                        "url": "https://www.pharmacytimes.com/view/fda-moves-to-restrict-mass-marketed-compounded-glp-1-products",
+                        "summary": "FDA announced action to restrict GLP-1 APIs in non-FDA-approved compounded drugs being mass-marketed as alternatives. Violators face seizure or injunction without further notice.",
+                        "date": "2026-03-05",
+                        "source": "Pharmacy Times",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 05, 2026",
+                        "id": "art-8bdce186fe13"
+            },
+            {
+                        "title": "FDA Warns 30 Telehealth Companies Against Illegal Marketing of Compounded GLP-1s",
+                        "url": "https://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s",
+                        "summary": "FDA issued 30 warning letters to telehealth companies for false or misleading claims about compounded GLP-1 products. Letters require corrective steps within 15 working days or risk seizure and injunction.",
+                        "date": "2026-03-03",
+                        "source": "FDA.gov",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 03, 2026",
+                        "id": "art-e6f22b1a3d15"
+            },
+            {
+                        "title": "FDA Ramps Up Crackdown on GLP-1 Drug Compounding with Fresh Batch of 30 Warning Letters",
+                        "url": "https://www.fiercepharma.com/pharma/fda-ramps-crackdown-glp-1-drug-compounders-fresh-batch-30-warning-letters",
+                        "summary": "Second batch of warning letters targeting companies like Lovely Meds, Hello Cake, and MEDVi. Violations include implying sameness with FDA-approved products and obscuring product sourcing.",
+                        "date": "2026-03-03",
+                        "source": "Fierce Pharma",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 03, 2026",
+                        "id": "art-5448c7e2bfdd"
+            },
+            {
+                        "title": "RFK Jr, Peptides & FDA Category 2: What's Really Changing?",
+                        "url": "https://www.lumalexlaw.com/2026/03/02/fda-category-2-peptides-reclassification/",
+                        "summary": "Legal analysis clarifying that as of March 2026, no formal FDA rule has changed. The 14 peptides remain Category 2 substances until the FDA formally updates the list through administrative channels.",
+                        "date": "2026-03-02",
+                        "source": "LumaLex Law",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 02, 2026",
+                        "id": "art-2d4700b28e18"
+            },
+            {
+                        "title": "RFK Jr. Announces Plan to Move 14 Peptides from Category 2 Back to Category 1",
+                        "url": "https://amaneciahealth.com/fda-peptide-reclassification-2026-what-patients-need-to-know/",
+                        "summary": "HHS Secretary RFK Jr. announced on Feb 27, 2026 that approximately 14 of 19 peptides on the FDA Category 2 restricted list will be moved back to Category 1, restoring access through licensed compounding pharmacies. Includes BPC-157, Thymosin Alpha-1, AOD-9604, Semax, Selank, KPV, and MOTS-C.",
+                        "date": "2026-02-27",
+                        "source": "Amanecia Health",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 27, 2026",
+                        "id": "art-0fc2e2d5c93d"
+            },
+            {
+                        "title": "Don't Use Drug Products Intended to Be Sterile from This Houston Compounding Pharmacy: FDA",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/don-t-use-drug-products-intended-to-be-sterile-from-this-houston-compounding-pharmacy-fda/",
+                        "summary": "FDA warned healthcare providers and consumers not to use sterile drug products from a Houston compounding pharmacy due to quality and safety concerns.",
+                        "date": "2026-02-25",
+                        "source": "Becker's Hospital Review",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 25, 2026",
+                        "id": "art-db3830b69054"
+            },
+            {
+                        "title": "FDA Commissioner Makary Declares Upcoming Crackdown on GLP-1 Claims, Importation",
+                        "url": "http://www.mcdermottplus.com/insights/fdas-makary-declares-upcoming-crackdown-on-glp-1-claims-importation/",
+                        "summary": "FDA Commissioner Marty Makary stated FDA will focus on importation of unapproved APIs, signaling increased inspection activity, border restrictions, or both for compounding pharmacies.",
+                        "date": "2026-02-18",
+                        "source": "McDermott+",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 18, 2026",
+                        "id": "art-e1a9d4607293"
+            },
+            {
+                        "title": "FDA in Flux \u2014 February 2026 Newsletter",
+                        "url": "https://www.mintz.com/insights-center/viewpoints/2791/2026-02-18-fda-flux-february-2026-newsletter",
+                        "summary": "Monthly overview of FDA regulatory developments including compounding enforcement, peptide reclassification discussions, and telehealth advertising crackdowns.",
+                        "date": "2026-02-18",
+                        "source": "Mintz",
+                        "category": "General",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 18, 2026",
+                        "id": "art-1f665d807fbd"
+            },
+            {
+                        "title": "Pennsylvania Compounding Pharmacy Earns Another FDA Warning Letter",
+                        "url": "https://www.safemedicines.org/2026/02/february-17.html",
+                        "summary": "Boothwyn Pharmacy, LLC cited for sterility failures, subpotent injectable and ophthalmic drugs, and insanitary production conditions.",
+                        "date": "2026-02-17",
+                        "source": "Partnership for Safe Medicines",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 17, 2026",
+                        "id": "art-26c244a47803"
+            },
+            {
+                        "title": "State Compounding Legislation: Federal Preemption, State Limits and Patient Impact",
+                        "url": "https://www.skadden.com/insights/publications/2026/02/state-compounding-legislation",
+                        "summary": "Analysis of state-level compounding legislation, including Florida SB 860 and California Board of Pharmacy rules redefining 'essentially a copy' with new API sourcing requirements.",
+                        "date": "2026-02-15",
+                        "source": "Skadden",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 15, 2026",
+                        "id": "art-d203080e1474"
+            },
+            {
+                        "title": "FDA's Overreach on Compounded Peptides: Legal Battles and How Clinics Can Push Back",
+                        "url": "https://www.safehg.com/fdas-overreach-on-compounded-peptides-legal-battles-and-how-clinics-can-push-back/",
+                        "summary": "Analysis of legal challenges to the FDA's 2023 decision to move 19 peptides to Category 2, and strategies for clinics navigating the current regulatory uncertainty.",
+                        "date": "2026-02-10",
+                        "source": "Safe HG",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 10, 2026",
+                        "id": "art-f004d5ada8c9"
+            },
+            {
+                        "title": "Thinking About Starting a 503B Outsourcing Facility? Here's What You Need to Know",
+                        "url": "https://www.frierlevitt.com/articles/thinking-about-starting-a-503b-outsourcing-facility-heres-what-you-need-to-know/",
+                        "summary": "Comprehensive regulatory guide for launching a 503B outsourcing facility, covering FDA registration, cGMP requirements, inspection readiness, and the evolving enforcement landscape.",
+                        "date": "2026-02-08",
+                        "source": "Frier Levitt",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 08, 2026",
+                        "id": "art-052a673a4fa2"
+            },
+            {
+                        "title": "Compounding Pharmacy Sues Eli Lilly, Novo Nordisk over GLP-1 Access",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/compounding-pharmacy-sues-eli-lilly-novo-nordisk-over-glp-1-access/",
+                        "summary": "Compounding pharmacy files suit against pharmaceutical giants over GLP-1 access restrictions, arguing the companies are using patent litigation to block legitimate compounding activity.",
+                        "date": "2026-02-05",
+                        "source": "Becker's Hospital Review",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 05, 2026",
+                        "id": "art-6be14a504f08"
+            },
+            {
+                        "title": "FDA Updates Hospital Pharmacy Compounding Rules to Address Potential Shortages",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/fda-updates-hospital-pharmacy-compounding-rules-to-address-potential-shortages.html",
+                        "summary": "FDA updated guidance to allow small compounding pharmacies to supply hospitals during drug shortages, expanding the role of 503A pharmacies in the supply chain.",
+                        "date": "2026-01-28",
+                        "source": "Becker's Hospital Review",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 28, 2026",
+                        "id": "art-47e7bf840e7a"
+            },
+            {
+                        "title": "FDA Allowing Small Compounding Pharmacies to Supply Hospitals",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/fda-allowing-small-compounding-pharmacies-to-supply-hospitals.html",
+                        "summary": "FDA expanded the role of 503A compounding pharmacies to help address hospital drug shortage needs through updated guidance.",
+                        "date": "2026-01-28",
+                        "source": "Becker's Hospital Review",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 28, 2026",
+                        "id": "art-9f8e96c21237"
+            },
+            {
+                        "title": "Navigating the FDA's Final Interim Policy on Compounding with Bulk Drug Substances",
+                        "url": "https://www.bipc.com/navigating-the-fda-final-interim-policy-on-compounding-with-bulk-drug-substances-a-guide-for-503a-pharmacies-and-503b-outsourcing-facilities",
+                        "summary": "Detailed guide for 503A pharmacies and 503B outsourcing facilities on navigating the FDA's final interim policy, including compliance requirements, Category 1/2 distinctions, and enforcement discretion.",
+                        "date": "2026-01-22",
+                        "source": "Buchanan Ingersoll & Rooney",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 22, 2026",
+                        "id": "art-73d26271e0ab"
+            },
+            {
+                        "title": "Deep Dive: Regulatory Status of Popular Compounded Peptides",
+                        "url": "https://djholtlaw.com/deep-dive-regulatory-status-of-popular-compounded-peptides/",
+                        "summary": "Comprehensive legal analysis of the regulatory status of each commonly compounded peptide, including BPC-157, TB-500, and Thymosin Alpha-1 under current FDA framework.",
+                        "date": "2026-01-20",
+                        "source": "Holt Law",
+                        "category": "Peptides",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 20, 2026",
+                        "id": "art-facaafcb3a7b"
+            },
+            {
+                        "title": "Best GLP-1 Telehealth Platforms (2026): Launch & Scale D2C Programs",
+                        "url": "https://www.telehealthtech.org/lists/best-glp-1-telehealth-platforms-2026",
+                        "summary": "Comprehensive comparison of white-label telehealth platforms for GLP-1 programs including Bask Health, Wheel, and CareValidate with launch timelines of 2-8 weeks.",
+                        "date": "2026-02-01",
+                        "source": "TelehealthTech",
+                        "category": "Telehealth",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 01, 2026",
+                        "id": "art-f74b8c89acba"
+            },
+            {
+                        "title": "FDA Probes Compounding Pharmacies over Quality Concerns",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/fda-probes-compounding-pharmacies-over-quality-concerns/",
+                        "summary": "FDA plans to gather information from 250 compounding outsourcing pharmacies amid safety and quality concerns, surveying facilities about market viability, compliance, and quality production.",
+                        "date": "2026-01-15",
+                        "source": "Becker's Hospital Review",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 15, 2026",
+                        "id": "art-38887c9ab4c7"
+            },
+            {
+                        "title": "FDA Enforcement Review: Looking Back at 2025 and Bracing for Continued Unpredictability in 2026",
+                        "url": "https://www.ropesgray.com/en/insights/alerts/2026/01/fda-enforcement-review-looking-back-at-2025-and-bracing-for-continued-unpredictability-in-2026",
+                        "summary": "Comprehensive review of FDA enforcement trends, including the unprecedented wave of advertising enforcement letters and the evolving approach to compounding oversight under Commissioner Makary.",
+                        "date": "2026-01-15",
+                        "source": "Ropes & Gray",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 15, 2026",
+                        "id": "art-ff0d7b05face"
+            },
+            {
+                        "title": "2025 Year in Review: FDA Drug and Device Advertising and Promotion Enforcement",
+                        "url": "https://www.kslaw.com/news-and-insights/2025-year-in-review-fda-drug-and-device-advertising-and-promotion-enforcement",
+                        "summary": "Total enforcement letters for pharmaceutical advertising violations marked the highest annual total in nearly 25 years, driven heavily by compounded GLP-1 and telehealth enforcement.",
+                        "date": "2026-01-10",
+                        "source": "King & Spalding",
+                        "category": "Advertising",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 10, 2026",
+                        "id": "art-1f91702f4b4e"
+            },
+            {
+                        "title": "Navigating 503B Outsourcing Trends and 2026 Outlook",
+                        "url": "https://www.barringtonjames.com/resources/blog/navigating-503b-outsourcing-trends-and-2026-outlook-/",
+                        "summary": "503B facility outlook: more than half have not been inspected since the pandemic. An inspection wave is likely in 2026. FDA enforcement discretion for semaglutide and tirzepatide under final review.",
+                        "date": "2026-01-10",
+                        "source": "Barrington James",
+                        "category": "Drug Supply",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 10, 2026",
+                        "id": "art-3e490ef3acf8"
+            },
+            {
+                        "title": "FDA Takes Aim at Drug Ads: What It Means for Compounding Pharmacies, Medspas and Telehealth Companies",
+                        "url": "https://natlawreview.com/article/fda-takes-aim-drug-ads-what-it-means-compounding-pharmacies-medspas-and-telehealth",
+                        "summary": "Analysis of FDA's enforcement initiative against misleading advertising in compounded drugs, including claims about 'generic' or 'clinically proven' versions of approved GLP-1 therapies.",
+                        "date": "2026-01-08",
+                        "source": "National Law Review",
+                        "category": "Advertising",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 08, 2026",
+                        "id": "art-b2edfb00b7fc"
+            },
+            {
+                        "title": "Drug Approvals to Watch in 2026",
+                        "url": "https://www.beckershospitalreview.com/pharmacy/drug-approvals-to-watch-in-2026/",
+                        "summary": "Orforglipron, a once-daily oral GLP-1 receptor agonist, is under FDA priority review with a decision expected in March 2026. Could reshape the compounding landscape further.",
+                        "date": "2026-01-05",
+                        "source": "Becker's Hospital Review",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 05, 2026",
+                        "id": "art-8bef29b3350a"
+            },
+            {
+                        "title": "FDA Approves First GLP-1 Pill for Obesity from Novo Nordisk",
+                        "url": "https://www.cnbc.com/2025/12/22/fda-approves-first-glp-1-pill-for-obesity-from-novo-nordisk.html",
+                        "summary": "FDA approved Novo Nordisk's 25 mg oral Wegovy, the first FDA-approved oral GLP-1 therapy for chronic weight management in adults. Major milestone that may further impact the compounding landscape.",
+                        "date": "2025-12-22",
+                        "source": "CNBC",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Dec 22, 2025",
+                        "id": "art-b4bc54b074e2"
+            },
+            {
+                        "title": "Bask Health: Pioneering Telehealth and Transforming Access to GLP-1 Medications",
+                        "url": "https://www.prnewswire.com/news-releases/bask-health-pioneering-telehealth-and-transforming-access-to-glp-1-medications-in-a-booming-industry-302324056.html",
+                        "summary": "Bask Health's white-label platform combines EMR, e-prescribing, pharmacy fulfillment, and nationwide clinician network for GLP-1, TRT, ED, and peptide programs across all 50 states.",
+                        "date": "2025-12-10",
+                        "source": "PR Newswire",
+                        "category": "Telehealth",
+                        "jurisdiction": "federal",
+                        "date_display": "Dec 10, 2025",
+                        "id": "art-aaf6cb34bae0"
+            },
+            {
+                        "title": "Congress Introduces SAFE Drugs Act of 2025, Expanding FDA Oversight of Compounded GLP-1 Drugs and Telehealth",
+                        "url": "https://www.dykema.com/news-insights/congress-introduces-safe-drugs-act-of-2025-expanding-fda-oversight-of-compounded-glp-1-drugs-and-telehealth-providers.html",
+                        "summary": "H.R. 6509 introduced Dec 9, 2025. Requires pre-compounding inspections for 503B facilities, biennial re-inspections for high-volume compounders, reporting for interstate shipments exceeding 20 Rx/drug, and codifies 'essentially a copy' definition.",
+                        "date": "2025-12-09",
+                        "source": "Dykema",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Dec 09, 2025",
+                        "id": "art-d5b32277a438"
+            },
+            {
+                        "title": "SAFE Drugs Act of 2025 \u2014 Full Text (H.R. 6509)",
+                        "url": "https://www.congress.gov/bill/119th-congress/house-bill/6509/text",
+                        "summary": "Full text of the SAFE Drugs Act proposing expanded FDA oversight of compounding pharmacies, outsourcing facilities, and telehealth distribution models for compounded drugs.",
+                        "date": "2025-12-09",
+                        "source": "Congress.gov",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Dec 09, 2025",
+                        "id": "art-1a78169f2a85"
+            },
+            {
+                        "title": "Federal Register: Human Drug Compounding Under Sections 503A and 503B \u2014 Proposed Collection Request",
+                        "url": "https://www.federalregister.gov/documents/2025/11/24/2025-20773/agency-information-collection-activities-proposed-collection-comment-request-human-drug-compounding",
+                        "summary": "FDA proposes to gather information from 250 compounding outsourcing facilities on challenges related to market viability, compliance, quality production, and FDA interactions.",
+                        "date": "2025-11-24",
+                        "source": "Federal Register",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Nov 24, 2025",
+                        "id": "art-72bfe1f0a8c4"
+            },
+            {
+                        "title": "U.S. House Introduces Bill to Expand Compounding During Drug Shortages",
+                        "url": "https://www.thefdalawblog.com/2025/10/the-u-s-house-introduces-bill-to-expand-compounding-during-drug-shortages-provide-clarity-on-bulk-substance-usp-nf-monograph-definition-and-get-rid-of-section-503as-tortu/",
+                        "summary": "Proposed legislation to expand compounding during drug shortages, provide clarity on bulk substance USP/NF monograph definitions, and reform Section 503A's memorandum of understanding provisions.",
+                        "date": "2025-10-15",
+                        "source": "The FDA Law Blog",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Oct 15, 2025",
+                        "id": "art-9bc7fbfd24cc"
+            },
+            {
+                        "title": "FY 2026 Outsourcing Facility Registration and Fee Information",
+                        "url": "https://www.fda.gov/industry/fda-user-fee-programs/human-drug-compounding-outsourcing-facility-fees",
+                        "summary": "FY 2026 registration period for outsourcing facilities runs Oct 1, 2025 through Dec 31, 2026. Fee rates published in Federal Register on July 30, 2025.",
+                        "date": "2025-10-01",
+                        "source": "FDA.gov",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Oct 01, 2025",
+                        "id": "art-bb0e455de5c2"
+            },
+            {
+                        "title": "FDA, HHS Taking Action Against Telehealth's Compounded Drug Advertising",
+                        "url": "https://www.hklaw.com/en/insights/publications/2025/09/fda-hhs-taking-action-against-telehealths-compounded-drug-advertising",
+                        "summary": "FDA and HHS launched an enforcement initiative targeting misleading advertising in the compounded drug space, flagging claims implying equivalence to FDA-approved products.",
+                        "date": "2025-09-15",
+                        "source": "Holland & Knight",
+                        "category": "Advertising",
+                        "jurisdiction": "federal",
+                        "date_display": "Sep 15, 2025",
+                        "id": "art-6039e0278661"
+            },
+            {
+                        "title": "Companies Find Ways Around End of GLP-1 Shortage",
+                        "url": "https://www.advisory.com/daily-briefing/2025/05/27/glp-1-compounders",
+                        "summary": "Despite shortages being resolved, compounders continued operations by adding supplemental ingredients or altering dosage forms to argue products aren't 'essentially copies' of FDA-approved drugs.",
+                        "date": "2025-05-27",
+                        "source": "Advisory Board",
+                        "category": "Drug Supply",
+                        "jurisdiction": "federal",
+                        "date_display": "May 27, 2025",
+                        "id": "art-247f1eabe120"
+            },
+            {
+                        "title": "Semaglutide Shortage Resolved \u2014 What It Means for Compounders",
+                        "url": "https://www.mwe.com/insights/semaglutide-shortage-resolved/",
+                        "summary": "FDA declared semaglutide shortage resolved on Feb 21, 2025. 503A pharmacies had until April 22, 2025 to cease compounding. 503B outsourcing facilities until May 22, 2025.",
+                        "date": "2025-03-01",
+                        "source": "McDermott Will & Emery",
+                        "category": "Drug Supply",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 01, 2025",
+                        "id": "art-6f731d179f0e"
+            },
+            {
+                        "title": "FDA Clarifies Policies for Compounders as National GLP-1 Supply Begins to Stabilize",
+                        "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize",
+                        "summary": "FDA formally clarified enforcement discretion timelines: 503A pharmacies must cease compounding semaglutide by April 22, 2025. 503B outsourcing facilities by May 22, 2025.",
+                        "date": "2025-02-21",
+                        "source": "FDA.gov",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Feb 21, 2025",
+                        "id": "art-ed3e02f85d79"
+            },
+            {
+                        "title": "FDA Releases Revised Guidance for Compounding Pharmacies on Bulk Drug Substances",
+                        "url": "https://ncpa.org/newsroom/qam/2025/01/13/fda-releases-guidance-compounding-pharmacies",
+                        "summary": "Under revised guidance, 503A pharmacies can compound Category 1 substances but cannot compound substances without USP monographs (like most peptides) until further review. 503B facilities limited to Category 1 bulk list or FDA-approved drugs in shortage.",
+                        "date": "2025-01-13",
+                        "source": "NCPA",
+                        "category": "Guidance",
+                        "jurisdiction": "federal",
+                        "date_display": "Jan 13, 2025",
+                        "id": "art-fa4e94fe1af6"
+            },
+            {
+                        "title": "Registered Outsourcing Facilities",
+                        "url": "http://www.fda.gov/drugs/human-drug-compounding/registered-outsourcing-facilities",
+                        "summary": "Discover FDA's comprehensive list of registered outsourcing facilities engaged in human drug compounding. Get the latest updates, compliance guidelines, and resources to ensure safe, high-quality compounded medications. Explore regulations and stay informed with verified facility details.",
+                        "date": "2026-03-28",
+                        "source": "FDA.gov",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "primary",
+                        "id": "art-28ff21837db3"
+            },
+            {
+                        "title": "Bulk Drug Substances Used in Compounding",
+                        "url": "http://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding",
+                        "summary": "Compounders sometimes produce drugs using bulk drug substances or active pharmaceutical ingredients. Because compounding from these substances presents risks to patients, sections 503A and 503B of the FD&amp;C Act place limits on the bulk drug substances that can be used in compounding.",
+                        "date": "2026-03-28",
+                        "source": "FDA.gov",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "primary",
+                        "id": "art-02ed3a013ca0"
+            },
+            {
+                        "title": "FDA Approves Fourth Product Under National Priority Voucher Program, Higher Dose Semaglutide",
+                        "url": "http://www.fda.gov/news-events/press-announcements/fda-approves-fourth-product-under-national-priority-voucher-program-higher-dose-semaglutide",
+                        "summary": "The U.S. Food and Drug Administration today approved a new higher dose (7.2 mg) of Wegovy (semaglutide) injection for weight loss and long-term maintenance of weight loss for certain adult patients.",
+                        "date": "2026-03-28",
+                        "source": "FDA.gov",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "primary",
+                        "id": "art-0d45bd974ac0"
+            },
+            {
+                        "title": "FDA Warns 30 Telehealth Companies Against Illegal Marketing of Compounded GLP-1s",
+                        "url": "http://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s",
+                        "summary": "The U.S. Food and Drug Administration today announced the issuance of 30 warning letters to telehealth companies for making false or misleading claims regarding compounded GLP-1 products offered on their websites.",
+                        "date": "2026-03-28",
+                        "source": "FDA.gov",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "primary",
+                        "id": "art-df9ca0b317d8"
+            },
+            {
+                        "title": "FDA Intends to Take Action Against Non-FDA-Approved GLP-1 Drugs",
+                        "url": "http://www.fda.gov/news-events/press-announcements/fda-intends-take-action-against-non-fda-approved-glp-1-drugs",
+                        "summary": "Today, the U.S. Food and Drug Administration is announcing its intent to take decisive steps to restrict GLP-1 active pharmaceutical ingredients (APIs) intended for use in non-FDA-approved compounded drugs that are being mass-marketed by companies",
+                        "date": "2026-03-28",
+                        "source": "FDA.gov",
+                        "category": "GLP-1",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "primary",
+                        "id": "art-be4587e9784f"
+            },
+            {
+                        "title": "Warning Letters",
+                        "url": "https://www.fiercepharma.com/pharma/warning-letters",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Fierce Pharma",
+                        "category": "Enforcement",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-e9ff809b23f3"
+            },
+            {
+                        "title": "Find a Compounding Pharmacy",
+                        "url": "https://a4pc.org/find-a-compounder",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-be61b1358cb7"
+            },
+            {
+                        "title": "Compounders on Capitol HillAPC\u2019s annual D.C. fly-in is your best chance all year to meet with federal legislators on their turf. Share your concerns and brief them on the issues facing your compoundin",
+                        "url": "https://a4pc.org/event/cch-2025",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-6230655ba999"
+            },
+            {
+                        "title": "EduConOur annual virtual education conference focuses on hot topics and ethical compounding.",
+                        "url": "https://a4pc.org/event/educon",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-e15cba45f357"
+            },
+            {
+                        "title": "Owner SummitA one-of-a-kind learning, planning, and networking especially for compounding pharmacy leaders. Two days of meaty presentations and conversations focused on helping you run your business b",
+                        "url": "https://a4pc.org/news//a4pc.org/ownersummit",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-a773768a5ae8"
+            },
+            {
+                        "title": "Federal AdvocacyLobbying on Capitol Hill to assure that legislation elevates and preserves pure ingredient compounding",
+                        "url": "https://a4pc.org/federal",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-fd728d79e524"
+            },
+            {
+                        "title": "State Level ResourcesAPC has three members-only resources covering state-level compounding issues. Plus, find what we are working on.",
+                        "url": "https://a4pc.org/state",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-12d7d6dd1a48"
+            },
+            {
+                        "title": "CompPACHelp elect candidates who think like you do about pharmacy compounding.",
+                        "url": "https://a4pc.org/comppac",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-ffee2a56d4af"
+            },
+            {
+                        "title": "APC Position StatementsFrom time to time, APC makes its position clear on critical issues related to compounding.",
+                        "url": "https://a4pc.org/advocacy/statements-and-other-resources/",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-52bceee95e43"
+            },
+            {
+                        "title": "Ethical CompoundingThere\u2019s an old saying, \u201cYou can\u2019t talk your way out of a problem you behaved your way into.\u201d",
+                        "url": "https://a4pc.org/thecode",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-518673f844f3"
+            },
+            {
+                        "title": "Compounding Foundations CourseThe Ethical, Legal, and Regulatory Foundations of Pharmacy Compounding",
+                        "url": "https://certificate.a4pc.org/",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-2ae06452bedf"
+            },
+            {
+                        "title": "Compounding Best PracticesDefined, science-based best practice guidelines for compounding certain medications and for other critical processes.",
+                        "url": "https://a4pc.org/resources/compounding-best-practices/",
+                        "summary": "",
+                        "date": "2026-03-28",
+                        "source": "Alliance for Pharmacy Compounding",
+                        "category": "Compounding",
+                        "jurisdiction": "federal",
+                        "date_display": "Mar 28, 2026",
+                        "tier": "supplementary",
+                        "id": "art-520d2c1475fe"
+            }
+];
 
-        // Update timestamp
+        function updateStats() {
+            let total = articles.length;
+            let sources = new Set();
+            let enforcement = 0;
+            let guidance = 0;
+
+            articles.forEach(article => {
+                sources.add(article.source);
+                if (article.category === 'Enforcement') enforcement++;
+                if (article.category === 'Guidance') guidance++;
+            });
+
+            document.getElementById('total-articles').textContent = total;
+            document.getElementById('total-sources').textContent = sources.size;
+            document.getElementById('enforcement-actions').textContent = enforcement;
+            document.getElementById('active-legislation').textContent = guidance;
+        }
+
         function updateTimestamp() {
             const now = new Date();
-            const options = {
+            const formatted = now.toLocaleString('en-US', {
+                timeZone: 'America/Chicago',
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric',
-                hour: 'numeric',
+                hour: '2-digit',
                 minute: '2-digit',
-                timeZone: 'America/Chicago'
-            };
-            const formatted = now.toLocaleDateString('en-US', options);
+                second: '2-digit'
+            });
             const parts = formatted.split(', ');
             const datePart = parts[0];
             const timePart = parts[1];
@@ -1054,16 +1953,12 @@
         }
         updateTimestamp();
 
-        // Stats are initialized by updateStats() called before filterArticles()
+        updateStats();
 
-        // Key developments
         const keyDevs = [
-            articles.find(a => a.id === 'art-fda-30-warnings'),
-            articles.find(a => a.source === 'FDA.gov' && a.date === '2026-03-03'),
-            articles.find(a => a.source === 'Hims & Hers (IR)'),
-            articles.find(a => a.id === 'art-rfk-peptides'),
-            articles.find(a => a.id === 'art-novo-sues-hims'),
-            articles.find(a => a.id === 'art-safe-drugs-act')
+            articles.find(a => a.source === 'FDA.gov'),
+            articles[0],
+            articles[1]
         ].filter(Boolean);
 
         function renderKeyDevelopments() {
@@ -1078,17 +1973,14 @@
         }
         renderKeyDevelopments();
 
-        // Determine if source is primary
         function isPrimarySource(source) {
             return ['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'].includes(source);
         }
 
-        // Jurisdiction filter state
         let activeJurisdiction = 'federal';
         let activeFilter = 'all';
         let searchTerm = '';
 
-        // Render articles
         function renderArticles(articlesToRender) {
             const container = document.getElementById('articles-container');
             if (articlesToRender.length === 0) {
@@ -1097,81 +1989,27 @@
             }
             container.innerHTML = articlesToRender.map(article => {
                 const jurisdictionClass = article.jurisdiction === 'state' ? 'state-article' : 'federal-article';
+                const sourceClass = isPrimarySource(article.source) ? 'primary' : 'secondary';
                 return `
-                <div class="article-card ${jurisdictionClass}" ${article.id ? `id="${article.id}"` : ''}>
-                    <div class="article-meta">
-                        <span class="article-date">${article.date_display}</span>
-                        <div class="article-badges">
-                            <span class="source-badge ${isPrimarySource(article.source) ? 'primary' : 'secondary'}">${article.source}</span>
-                            <span class="category-tag">${article.category}</span>
-                            ${article.state ? `<span class="jurisdiction-badge">${article.state}</span>` : ''}
+                    <div class="article-card ${jurisdictionClass}">
+                        <div class="article-meta">
+                            <div class="article-date">${article.date_display}</div>
+                            <div class="article-badges">
+                                <span class="source-badge ${sourceClass}">${article.source}</span>
+                                <span class="category-tag">${article.category}</span>
+                                ${article.jurisdiction === 'state' ? `<span class="jurisdiction-badge">${article.state || 'STATE'}</span>` : ''}
+                            </div>
                         </div>
+                        <div class="article-title">
+                            <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title}</a>
+                        </div>
+                        <div class="article-summary">${article.summary || 'No summary available'}</div>
+                        <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="article-link">Read more →</a>
                     </div>
-                    <div class="article-title"><a href="${article.url}" target="_blank">${article.title}</a></div>
-                    <div class="article-summary">${article.summary}</div>
-                    <a href="${article.url}" target="_blank" class="article-link">Read full article →</a>
-                </div>
                 `;
             }).join('');
         }
 
-        // Tab switching
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.querySelectorAll('.tab-button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.getElementById(tabName).classList.add('active');
-                this.classList.add('active');
-            });
-        });
-
-        // Update stats bar based on current jurisdiction
-        function updateStats() {
-            let pool = articles;
-            if (activeJurisdiction === 'federal') {
-                pool = pool.filter(a => a.jurisdiction === 'federal');
-            } else if (activeJurisdiction === 'state') {
-                pool = pool.filter(a => a.jurisdiction === 'state');
-            }
-
-            const totalArticles = pool.length;
-            const sources = new Set(pool.map(a => a.source)).size;
-            const enforcement = pool.filter(a => a.category === 'Enforcement').length;
-            const legislation = pool.filter(a => a.category === 'Guidance').length;
-
-            document.getElementById('total-articles').textContent = totalArticles;
-            document.getElementById('total-sources').textContent = sources;
-            document.getElementById('enforcement-actions').textContent = enforcement;
-            document.getElementById('active-legislation').textContent = legislation;
-
-            // Also update the Insights tab stat cards if they exist
-            const insTotal = document.getElementById('insights-total');
-            const insSources = document.getElementById('insights-sources');
-            const insEnf = document.getElementById('insights-enforcement');
-            const insLeg = document.getElementById('insights-legislation');
-            if (insTotal) insTotal.textContent = totalArticles;
-            if (insSources) insSources.textContent = sources;
-            if (insEnf) insEnf.textContent = enforcement;
-            if (insLeg) insLeg.textContent = legislation;
-        }
-
-        // Jurisdiction toggle
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                activeJurisdiction = this.getAttribute('data-jurisdiction');
-                updateStats();
-                filterArticles();
-            });
-        });
-
-        // Filtering
         function filterArticles() {
             let filtered = articles;
 
@@ -1186,87 +2024,90 @@
             }
 
             if (searchTerm) {
-                const searchLower = searchTerm.toLowerCase();
+                const term = searchTerm.toLowerCase();
                 filtered = filtered.filter(a =>
-                    a.title.toLowerCase().includes(searchLower) ||
-                    a.summary.toLowerCase().includes(searchLower) ||
-                    a.source.toLowerCase().includes(searchLower)
+                    a.title.toLowerCase().includes(term) ||
+                    a.summary.toLowerCase().includes(term) ||
+                    a.source.toLowerCase().includes(term)
                 );
             }
 
-            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
             renderArticles(filtered);
         }
+
+        document.querySelectorAll('.jurisdiction-toggle .toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.jurisdiction-toggle .toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeJurisdiction = this.dataset.jurisdiction;
+                filterArticles();
+            });
+        });
 
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                activeFilter = this.getAttribute('data-filter');
+                activeFilter = this.dataset.filter;
                 filterArticles();
             });
         });
 
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            searchTerm = e.target.value;
+        document.getElementById('search-input').addEventListener('keyup', function() {
+            searchTerm = this.value;
             filterArticles();
         });
 
-        // Stat bar click navigation
-        document.querySelectorAll('.stat-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const statFilter = this.getAttribute('data-stat-filter');
-
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                document.getElementById('feed').classList.add('active');
-                document.querySelector('[data-tab="feed"]').classList.add('active');
-
-                if (statFilter === 'all' || statFilter === 'primary-sources') {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    document.querySelector('[data-filter="all"]').classList.add('active');
-                    activeFilter = 'all';
-
-                    if (statFilter === 'primary-sources') {
-                        document.getElementById('search-input').value = '';
-                        searchTerm = '';
-                        const primarySources = ['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'];
-                        let filtered = articles.filter(a => primarySources.includes(a.source));
-                        if (activeJurisdiction === 'federal') {
-                            filtered = filtered.filter(a => a.jurisdiction === 'federal');
-                        } else if (activeJurisdiction === 'state') {
-                            filtered = filtered.filter(a => a.jurisdiction === 'state');
-                        }
-                        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-                        renderArticles(filtered);
-                        return;
-                    }
-                } else {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    const matchBtn = document.querySelector(`[data-filter="${statFilter}"]`);
-                    if (matchBtn) matchBtn.classList.add('active');
-                    activeFilter = statFilter;
-                }
-
-                document.getElementById('search-input').value = '';
-                searchTerm = '';
-                filterArticles();
-
-                document.getElementById('feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                const tabId = this.dataset.tab;
+                document.getElementById(tabId).classList.add('active');
             });
         });
 
-        // Initial render
-        updateStats();
-        filterArticles();
+        function renderInsights() {
+            const insights = [
+                { title: 'Enforcement Escalation', text: 'FDA enforcement activity is accelerating with multiple warning letters issued in early 2026. The agency appears ready to pursue pharmaceutical manufacturers and telehealth platforms marketing compounded products.' },
+                { title: 'Product Quality Concerns', text: 'Testing by branded manufacturers has documented impurities in compounded injectable and oral formulations. Third-party quality control is becoming essential.' },
+                { title: 'Legal Uncertainty', text: 'Regulatory treatment of compounded drugs as manufacturing versus compounding remains in flux. Patent litigation is introducing new risks for compounders.' }
+            ];
 
-        // Category chart
+            const container = document.getElementById('insights-container');
+            container.innerHTML = insights.map(insight => `
+                <div class="insight-card">
+                    <div class="insight-title">${insight.title}</div>
+                    <div class="insight-text">${insight.text}</div>
+                </div>
+            `).join('');
+        }
+        renderInsights();
+
         function renderCategoryChart() {
             const categories = {};
             articles.forEach(article => {
                 categories[article.category] = (categories[article.category] || 0) + 1;
             });
+
+            const container = document.getElementById('timeline-container');
+            if (!container) return;
+
+            if (!document.getElementById('category-chart')) {
+                const chartDiv = document.createElement('div');
+                chartDiv.id = 'category-chart';
+                chartDiv.className = 'chart-container';
+                const title = document.createElement('div');
+                title.className = 'chart-title';
+                title.textContent = 'Articles by Category';
+                chartDiv.appendChild(title);
+                const barChart = document.createElement('div');
+                barChart.className = 'bar-chart';
+                barChart.id = 'category-chart-bars';
+                chartDiv.appendChild(barChart);
+                container.parentElement.insertBefore(chartDiv, container);
+            }
 
             const chartHTML = Object.entries(categories)
                 .sort((a, b) => b[1] - a[1])
@@ -1283,25 +2124,17 @@
                 })
                 .join('');
 
-            document.getElementById('category-chart').innerHTML = chartHTML;
+            const chartBarsContainer = document.getElementById('category-chart-bars');
+            if (chartBarsContainer) {
+                chartBarsContainer.innerHTML = chartHTML;
+            }
         }
-        renderCategoryChart();
 
-        // Timeline rendering
         function renderTimeline() {
             const milestones = [
-                { date: 'Mar 26, 2026', title: 'NPR Reports on FDA Restrictions and Overseas Suppliers', content: 'NPR highlights how FDA restrictions on peptides have driven patients to unregulated overseas suppliers, creating new safety concerns from potentially adulterated products.' },
-                { date: 'Mar 13, 2026', title: 'Eli Lilly Issues Impurity Warning on Compounded GLP-1s', content: 'Eli Lilly documents chemical impurities, bacterial contamination, and high endotoxin levels in compounded tirzepatide products with vitamin B12.' },
-                { date: 'Mar 09, 2026', title: 'Novo-Hims Partnership Agreement Announced', content: 'Hims & Hers will offer Novo Nordisk branded medications while ceasing compounded GLP-1 marketing. Novo drops patent lawsuit.' },
-                { date: 'Mar 06, 2026', title: 'FDA Issued 30 Warning Letters to Telehealth Companies', content: 'FDA targeted telehealth firms for misleading GLP-1 claims, implying FDA approval, obscuring sourcing, and using brand-adjacent naming.' },
-                { date: 'Mar 04, 2026', title: 'FDA Enforcement Posture Shifts', content: 'National Law Review analysis: high-volume, standardized formulation and national distribution are now treated as manufacturing, not compounding.' },
-                { date: 'Feb 27, 2026', title: 'RFK Jr. Announces Peptide Reclassification Plans', content: 'HHS Secretary RFK Jr. announces intention to move 14 peptides from Category 2 back to Category 1, though formal rulemaking not yet issued.' },
-                { date: 'Feb 23, 2026', title: 'FDA Law Blog Analysis of Enforcement Escalation', content: 'Hyman Phelps examines whether FDA is preparing DOJ prosecution after HHS General Counsel referred Hims to DOJ.' },
-                { date: 'Feb 14, 2026', title: 'Morgan Lewis Patent Enforcement Analysis', content: 'Morgan Lewis examines how patent enforcement against compounders differs from traditional Hatch-Waxman litigation.' },
-                { date: 'Feb 09, 2026', title: 'Novo Nordisk Files Patent Infringement Suit Against Hims', content: 'Novo seeks permanent injunction and damages for compounded semaglutide products, later settled through partnership.' },
-                { date: 'Feb 06, 2026', title: 'FDA Signals API Restriction and DOJ Referral', content: 'FDA announced GLP-1 API restrictions; same day, HHS General Counsel referred Hims to DOJ for investigation.' },
-                { date: 'Jan 10, 2026', title: 'APC Releases 14-Point Regulatory Blueprint', content: 'Alliance for Pharmacy Compounding proposes streamlined federal oversight framework for compounding regulation.' },
-                { date: 'Dec 09, 2025', title: 'SAFE Drugs Act Introduced in Congress', content: 'H.R. 6509 proposes expanded FDA oversight including pre-compounding inspections, biennial re-inspections, and interstate shipment reporting.' }
+                { date: 'Mar 26, 2026', title: 'NPR Reports on FDA Restrictions and Overseas Suppliers', content: 'NPR highlights how FDA restrictions on peptides have driven patients to unregulated overseas suppliers.' },
+                { date: 'Mar 13, 2026', title: 'Eli Lilly Issues Impurity Warning on Compounded GLP-1s', content: 'Eli Lilly documents chemical impurities and contamination in compounded products.' },
+                { date: 'Mar 09, 2026', title: 'Novo-Hims Partnership Agreement Announced', content: 'Hims & Hers will offer Novo Nordisk branded medications while ceasing compounded GLP-1 marketing.' }
             ];
 
             const container = document.getElementById('timeline-container');
@@ -1318,43 +2151,37 @@
         }
         renderTimeline();
 
-        // Risk assessment
         function renderRisks() {
             const risks = [
                 {
                     level: 'critical',
                     title: 'Enforcement Escalation',
-                    description: 'FDA enforcement action is accelerating with 30 warning letters in March 2026 alone. The agency appears prepared to pursue DOJ prosecution for egregious violators. Companies marketing compounded GLP-1 drugs as mass-produced alternatives face seizure and injunction.'
+                    description: 'FDA enforcement action is accelerating with warning letters issued in March 2026. The agency appears prepared to pursue DOJ prosecution.'
                 },
                 {
                     level: 'critical',
                     title: 'Patent Litigation Risk',
-                    description: 'Novo Nordisk and Eli Lilly are actively litigating against compounders. Patent enforcement against compounders operates outside Hatch-Waxman, requiring companies to prove entitlement to preliminary injunctions. Litigation costs and damages exposure are significant.'
+                    description: 'Novo Nordisk and Eli Lilly are actively litigating against compounders. Patent enforcement requires companies to prove entitlement to injunctions.'
                 },
                 {
                     level: 'high',
                     title: 'Product Quality and Safety Liability',
-                    description: 'Testing by branded manufacturers has documented impurities up to 86% in injectable semaglutide and 75% in oral versions. Bacterial contamination and chemical reactions create liability exposure. Products marketed to patients may pose health risks.'
+                    description: 'Testing has documented impurities in injectable and oral formulations. Products marketed to patients may pose health risks.'
                 },
                 {
                     level: 'high',
                     title: 'State Legislative Fragmentation',
-                    description: 'California, Florida, Indiana, Arizona, and Colorado have enacted or proposed new compounding restrictions. Conflicting state requirements create compliance complexity for interstate telehealth platforms. Some states ban GLP-1 compounding when FDA-approved alternatives exist.'
+                    description: 'Multiple states have enacted new compounding restrictions. Conflicting state requirements create compliance complexity for interstate platforms.'
                 },
                 {
                     level: 'high',
                     title: 'Marketing and Advertising Violations',
-                    description: 'FDA is aggressively targeting misleading claims in compounded drug advertising. Claims implying sameness with FDA-approved products, obscured sourcing, and brand-adjacent naming trigger warning letters. Non-compliance risks seizure and injunction.'
+                    description: 'FDA is aggressively targeting misleading claims in compounded drug advertising. Non-compliance risks seizure and injunction.'
                 },
                 {
                     level: 'medium',
                     title: 'API Sourcing and Supply Chain Risk',
-                    description: 'FDA announced plans to restrict GLP-1 APIs used in compounded products. New state laws require pharmaceutical-grade APIs from FDA-inspected facilities. Sourcing transparency and documentation are now critical compliance requirements.'
-                },
-                {
-                    level: 'medium',
-                    title: 'Regulatory Uncertainty on Peptides',
-                    description: 'RFK Jr. announced plans to reclassify 14 peptides, but no formal Federal Register action has been issued. Compounders remain in regulatory limbo. Reliance on announced policy without formal rulemaking creates operational risk.'
+                    description: 'FDA announced plans to restrict GLP-1 APIs used in compounded products. Sourcing transparency is now critical.'
                 }
             ];
 

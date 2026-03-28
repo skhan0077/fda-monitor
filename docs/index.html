@@ -1874,7 +1874,7 @@
             </div>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg assistant">Welcome. I can help you navigate FDA enforcement actions, peptide compounding regulations, GLP-1 market developments, and state-level legislative activity. What would you like to know?</div>
+            <div class="chat-msg assistant">Welcome. I have full access to this dashboard and live internet search. Ask me about FDA enforcement, peptide regulations, GLP-1 developments, state legislation, or any breaking news. I can also filter, sort, and reorganize the page for you. What would you like to know?</div>
         </div>
         <div class="chat-input-area">
             <input type="text" class="chat-input" id="chatInput" placeholder="Ask about FDA regulations, peptides, telehealth..." />
@@ -1941,11 +1941,15 @@
             articles.forEach(a => { categories[a.category] = (categories[a.category] || 0) + 1; });
             const catBreakdown = Object.entries(categories).sort((a,b) => b[1]-a[1]).map(([k,v]) => `${k}: ${v}`).join(', ');
 
+            const today = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Chicago' });
+
             return `You are a senior FDA regulatory analyst embedded in a real-time monitoring dashboard for a white-label telehealth platform that provides clinical prescriptions for peptides and GLP-1 medications.
+
+Today's date is ${today}.
 
 Your role is to provide sharp, informed analysis on FDA enforcement, peptide compounding regulations, GLP-1 market dynamics, telehealth compliance, and state-level legislative developments. You speak with the authority and tone of a Becker's Hospital Review analyst -- professional, direct, and substantive.
 
-You have full access to everything on this dashboard. Use it to ground your answers in specific, cited developments.
+You have full access to everything on this dashboard AND live internet search. Use the dashboard data to ground your answers in specific, cited developments. When a question requires the latest information beyond what is on the dashboard, use your web search capability to find current news, FDA announcements, court filings, legislative updates, and other relevant sources. Always indicate when information comes from a live web search vs. the dashboard data.
 
 === DASHBOARD STATISTICS ===
 Total articles: ${totalCount} (Federal: ${fedCount}, State: ${stateCount})
@@ -2048,14 +2052,14 @@ RULES FOR ACTIONS:
             messagesEl.appendChild(typingEl);
             messagesEl.scrollTop = messagesEl.scrollHeight;
 
-            // Build messages payload
+            // Build messages payload for Responses API
             if (conversationHistory.length === 0) {
-                conversationHistory.push({ role: 'system', content: buildSystemPrompt() });
+                conversationHistory.push({ role: 'developer', content: buildSystemPrompt() });
             }
             conversationHistory.push({ role: 'user', content: text });
 
             try {
-                const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+                const resp = await fetch('https://api.openai.com/v1/responses', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -2063,9 +2067,10 @@ RULES FOR ACTIONS:
                     },
                     body: JSON.stringify({
                         model: 'gpt-4o-mini',
-                        messages: conversationHistory,
+                        tools: [{ type: 'web_search_preview' }],
+                        input: conversationHistory,
                         temperature: 0.7,
-                        max_tokens: 1200
+                        max_output_tokens: 1200
                     })
                 });
 
@@ -2075,7 +2080,21 @@ RULES FOR ACTIONS:
                 }
 
                 const data = await resp.json();
-                const rawReply = data.choices[0].message.content;
+
+                // Extract text from Responses API output
+                let rawReply = '';
+                if (data.output) {
+                    for (const item of data.output) {
+                        if (item.type === 'message' && item.content) {
+                            for (const block of item.content) {
+                                if (block.type === 'output_text') {
+                                    rawReply += block.text;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!rawReply) rawReply = 'I was unable to generate a response.';
 
                 // Extract actions before displaying
                 const actions = [];

@@ -1921,26 +1921,78 @@
 
         // Build system prompt with live dashboard context
         function buildSystemPrompt() {
-            const articleSummary = articles.slice(0, 30).map(a =>
-                `[${a.date_display}] ${a.title} (${a.source}${a.state ? ', ' + a.state : ''}) - ${a.category}`
+            // All articles (full feed)
+            const allArticles = articles.map(a =>
+                `[${a.date_display}] ${a.title} (${a.source}${a.state ? ', ' + a.state : ''}, ${a.jurisdiction}) - ${a.category}: ${a.summary || ''}`
             ).join('\n');
+
+            // Key developments
+            const keyDevsSummary = [...federalKeyDevs, ...stateKeyDevs]
+                .filter(Boolean)
+                .filter((v, i, a) => a.findIndex(t => t.url === v.url) === i)
+                .map(a => `[${a.date_display}] ${a.title} (${a.source}${a.state ? ', ' + a.state : ''})`)
+                .join('\n');
+
+            // Enforcement timeline
+            const timelineSummary = [...federalMilestones, ...stateMilestones].map(m =>
+                `[${m.date}] ${m.title} (${m.source}${m.state ? ', ' + m.state : ''}): ${m.content}`
+            ).join('\n');
+
+            // Insights panels
+            const insightsSummary = [...federalInsights, ...stateInsights].map(i =>
+                `${i.title}: ${i.content}`
+            ).join('\n\n');
+
+            // Risk assessments
+            const risksSummary = [...federalRisks, ...stateRisks].map(r =>
+                `[${r.level.toUpperCase()}] ${r.title}: ${r.description}`
+            ).join('\n');
+
+            // Stats
+            const totalCount = articles.length;
+            const fedCount = articles.filter(a => a.jurisdiction === 'federal').length;
+            const stateCount = articles.filter(a => a.jurisdiction === 'state').length;
+            const sources = [...new Set(articles.map(a => a.source))];
+            const categories = {};
+            articles.forEach(a => { categories[a.category] = (categories[a.category] || 0) + 1; });
+            const catBreakdown = Object.entries(categories).sort((a,b) => b[1]-a[1]).map(([k,v]) => `${k}: ${v}`).join(', ');
 
             return `You are a senior FDA regulatory analyst embedded in a real-time monitoring dashboard for a white-label telehealth platform that provides clinical prescriptions for peptides and GLP-1 medications.
 
 Your role is to provide sharp, informed analysis on FDA enforcement, peptide compounding regulations, GLP-1 market dynamics, telehealth compliance, and state-level legislative developments. You speak with the authority and tone of a Becker's Hospital Review analyst -- professional, direct, and substantive.
 
-CURRENT DASHBOARD DATA (recent regulatory developments):
-${articleSummary}
+You have full access to everything on this dashboard. Use it to ground your answers in specific, cited developments.
 
-GUIDELINES:
-- Provide concise, actionable answers. No filler language.
-- Reference specific developments from the dashboard data when relevant.
-- When discussing risk, frame it in terms of business impact for a telehealth platform.
+=== DASHBOARD STATISTICS ===
+Total articles: ${totalCount} (Federal: ${fedCount}, State: ${stateCount})
+Sources tracked: ${sources.join(', ')}
+Category breakdown: ${catBreakdown}
+
+=== ALL REGULATORY ARTICLES (complete feed) ===
+${allArticles}
+
+=== KEY DEVELOPMENTS (editorial picks) ===
+${keyDevsSummary}
+
+=== ENFORCEMENT TIMELINE (chronological milestones) ===
+${timelineSummary}
+
+=== ANALYST INSIGHTS ===
+${insightsSummary}
+
+=== RISK ASSESSMENTS ===
+${risksSummary}
+
+=== GUIDELINES ===
+- Provide concise, actionable answers grounded in the dashboard data above. No filler language.
+- When referencing a development, cite the date and source (e.g., "Per the March 13 BioPharma Dive report...").
+- When discussing risk, frame it in terms of business impact for a telehealth platform prescribing peptides and GLP-1 medications.
 - Cover both federal and state-level regulatory dynamics when appropriate.
 - Never use emojis or semicolons in your responses.
 - Do not mention "OpenLoop" or any specific platform client names.
 - If asked about something outside your regulatory scope, politely redirect.
-- Keep responses focused -- aim for 2-4 paragraphs unless the question warrants more depth.`;
+- Keep responses focused -- aim for 2-4 paragraphs unless the question warrants more depth.
+- If a user asks about a specific state, check for state-level articles and risks in the data above.`;
         }
 
         fab.addEventListener('click', () => {
@@ -1983,7 +2035,7 @@ GUIDELINES:
                         model: 'gpt-4o-mini',
                         messages: conversationHistory,
                         temperature: 0.7,
-                        max_tokens: 800
+                        max_tokens: 1200
                     })
                 });
 

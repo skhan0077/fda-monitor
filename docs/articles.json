@@ -855,5 +855,41 @@
     "date_display": "Mar 03, 2026",
     "tier": "primary",
     "id": "art-be4587e9784f"
+  },
+  "art-218d4eaa1729": {
+    "title": "Are your compounding records actually telling the full story?",
+    "url": "https://a4pc.org/news/are-your-compounding-records-actually-telling-the-full-story",
+    "summary": "",
+    "date": "2026-03-26",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "Compounding",
+    "jurisdiction": "federal",
+    "date_display": "Mar 26, 2026",
+    "tier": "supplementary",
+    "id": "art-218d4eaa1729"
+  },
+  "art-ab2356836187": {
+    "title": "Your Compounding Defense Initiative dollars at work",
+    "url": "https://a4pc.org/news/your-compounding-defense-initiative-dollars-at-work",
+    "summary": "",
+    "date": "2026-03-26",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "Compounding",
+    "jurisdiction": "federal",
+    "date_display": "Mar 26, 2026",
+    "tier": "supplementary",
+    "id": "art-ab2356836187"
+  },
+  "art-bd91ce8fd16b": {
+    "title": "Tech Connect: The next decade of compounding pharmacy technology",
+    "url": "https://a4pc.org/news/tech-connect-the-next-decade-of-compounding-pharmacy-technology",
+    "summary": "",
+    "date": "2026-03-26",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "Compounding",
+    "jurisdiction": "federal",
+    "date_display": "Mar 26, 2026",
+    "tier": "supplementary",
+    "id": "art-bd91ce8fd16b"
   }
 }

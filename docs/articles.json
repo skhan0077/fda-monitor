@@ -832,30 +832,6 @@
     "date_display": "Jan 13, 2025",
     "id": "art-fa4e94fe1af6"
   },
-  "art-28ff21837db3": {
-    "title": "Registered Outsourcing Facilities",
-    "url": "http://www.fda.gov/drugs/human-drug-compounding/registered-outsourcing-facilities",
-    "summary": "Discover FDA's comprehensive list of registered outsourcing facilities engaged in human drug compounding. Get the latest updates, compliance guidelines, and resources to ensure safe, high-quality compounded medications. Explore regulations and stay informed with verified facility details.",
-    "date": "2026-03-28",
-    "source": "FDA.gov",
-    "category": "Compounding",
-    "jurisdiction": "federal",
-    "date_display": "Mar 28, 2026",
-    "tier": "primary",
-    "id": "art-28ff21837db3"
-  },
-  "art-02ed3a013ca0": {
-    "title": "Bulk Drug Substances Used in Compounding",
-    "url": "http://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding",
-    "summary": "Compounders sometimes produce drugs using bulk drug substances or active pharmaceutical ingredients. Because compounding from these substances presents risks to patients, sections 503A and 503B of the FD&amp;C Act place limits on the bulk drug substances that can be used in compounding.",
-    "date": "2026-03-28",
-    "source": "FDA.gov",
-    "category": "Compounding",
-    "jurisdiction": "federal",
-    "date_display": "Mar 28, 2026",
-    "tier": "primary",
-    "id": "art-02ed3a013ca0"
-  },
   "art-0d45bd974ac0": {
     "title": "FDA Approves Fourth Product Under National Priority Voucher Program, Higher Dose Semaglutide",
     "url": "http://www.fda.gov/news-events/press-announcements/fda-approves-fourth-product-under-national-priority-voucher-program-higher-dose-semaglutide",

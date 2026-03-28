@@ -106,6 +106,7 @@
 
         .stat-link {
             text-decoration: none;
+            color: inherit;
             cursor: pointer;
             border-radius: 6px;
             padding: 1.25rem;
@@ -1375,7 +1376,7 @@
 
             const container = document.getElementById('timeline-container');
             container.innerHTML = milestones.map((milestone, index) => `
-                <a href="${milestone.url}" target="_blank" class="timeline-item" style="text-decoration: none; color: inherit; display: block; cursor: pointer;">
+                <a href="${milestone.url}" target="_blank" class="timeline-item" style="text-decoration: none; color: inherit; cursor: pointer;">
                     <div class="timeline-date">${milestone.date}${milestone.state ? ' <span class="jurisdiction-badge" style="font-size: 0.7rem; padding: 1px 6px;">' + milestone.state + '</span>' : ''}</div>
                     <div class="timeline-content">
                         <h4>${milestone.title}</h4>

@@ -1,0 +1,49 @@
+name: FDA Monitor Refresh
+
+on:
+  schedule:
+    # Runs every 30 minutes, 24/7
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+    # Allows manual trigger from GitHub UI
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 feedparser
+
+      - name: Run scraper
+        run: python scraper.py
+        env:
+          PYTHONUNBUFFERED: '1'
+
+      - name: Check for changes
+        id: check
+        run: |
+          git diff --quiet docs/index.html && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push updates
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "FDA Monitor Bot"
+          git config user.email "bot@fda-monitor.local"
+          git add docs/index.html docs/articles.json
+          git commit -m "Update dashboard: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push

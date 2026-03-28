@@ -1968,9 +1968,9 @@ ${insightsSummary}
 ${risksSummary}
 
 === DASHBOARD INTERACTION COMMANDS ===
-You can control the dashboard by including [[ACTION:...]] tags in your response. These are invisible to the user but will trigger page navigation, highlighting, and view changes. Use them proactively to guide the user to the relevant content as you answer.
+You can control the dashboard by including [[ACTION:...]] tags in your response. These are invisible to the user but will trigger page navigation, filtering, highlighting, sorting, and view changes. Use them proactively whenever the user asks to see, show, filter, organize, or find anything on the dashboard.
 
-Available actions:
+NAVIGATION:
 - [[ACTION:tab:feed]] - Switch to Regulatory Feed tab
 - [[ACTION:tab:insights]] - Switch to Insights & Trends tab
 - [[ACTION:tab:timeline]] - Switch to Enforcement Timeline tab
@@ -1978,19 +1978,40 @@ Available actions:
 - [[ACTION:jurisdiction:federal]] - Switch to Federal jurisdiction view
 - [[ACTION:jurisdiction:state]] - Switch to State & Local jurisdiction view
 - [[ACTION:jurisdiction:all]] - Switch to All Jurisdictions view
-- [[ACTION:search:QUERY]] - Enter a search term in the article search box (e.g., [[ACTION:search:Florida]])
-- [[ACTION:filter:CATEGORY]] - Filter articles by category (e.g., [[ACTION:filter:Enforcement]], [[ACTION:filter:Market Activity]], [[ACTION:filter:all]])
-- [[ACTION:highlight:TEXT]] - Highlight article cards or risk cards whose title contains TEXT (e.g., [[ACTION:highlight:GLP-1]])
-- [[ACTION:scroll:SECTION]] - Scroll to a section: "top", "stats", "key-dev", "feed", "insights", "timeline", "risks" (e.g., [[ACTION:scroll:risks]])
+- [[ACTION:scroll:SECTION]] - Scroll to: "top", "stats", "key-dev", "feed", "insights", "timeline", "risks"
+
+FILTERING (these control which articles appear in the Regulatory Feed):
+- [[ACTION:filter:CATEGORY]] - Filter by category button (Enforcement, GLP-1, Peptides, Guidance, Market Activity, Compounding, Telehealth, Legal, State Legislation, all)
+- [[ACTION:search:QUERY]] - Filter articles whose title, summary, or source contains QUERY (e.g., [[ACTION:search:Becker]])
+- [[ACTION:showonly:source:SOURCE_NAME]] - Show ONLY articles from a specific source (e.g., [[ACTION:showonly:source:FDA.gov]], [[ACTION:showonly:source:Becker's Hospital Review]])
+- [[ACTION:showonly:keyword:WORD]] - Show ONLY articles mentioning a keyword in title or summary (e.g., [[ACTION:showonly:keyword:tirzepatide]])
+- [[ACTION:showonly:daterange:START|END]] - Show ONLY articles within a date range (e.g., [[ACTION:showonly:daterange:2026-03-01|2026-03-15]])
+- [[ACTION:showonly:state:STATE]] - Show ONLY articles related to a specific state (e.g., [[ACTION:showonly:state:California]], [[ACTION:showonly:state:FL]])
+- [[ACTION:reset]] - Clear ALL filters and show all articles again
+
+SORTING (reorder the articles in the feed):
+- [[ACTION:sort:newest]] - Sort articles by date, newest first (default)
+- [[ACTION:sort:oldest]] - Sort articles by date, oldest first
+- [[ACTION:sort:source]] - Group articles alphabetically by source name
+- [[ACTION:sort:category]] - Group articles by category
+
+HIGHLIGHTING:
+- [[ACTION:highlight:TEXT]] - Pulse a gold outline on any cards/items whose title contains TEXT. Auto-clears after 8 seconds.
 
 RULES FOR ACTIONS:
-- Always include at least one action when your answer references a specific dashboard section, category, or jurisdiction.
-- You can chain multiple actions. They execute in order with short delays for smooth transitions.
+- Always include at least one action when the user asks to see, show, filter, find, organize, sort, or rearrange content.
+- You can chain multiple actions. They execute in order with short delays.
 - Place actions at the END of your response text, after your written analysis.
-- If a user asks "show me" or "take me to" something, the action is the primary response -- still give a brief explanation.
+- If a user says "show me only Becker's articles" -> use [[ACTION:showonly:source:Becker's Hospital Review]] and [[ACTION:tab:feed]]
+- If a user says "just the FDA stuff" -> use [[ACTION:showonly:source:FDA.gov]]
+- If a user says "articles about tirzepatide" -> use [[ACTION:showonly:keyword:tirzepatide]]
+- If a user says "show me everything from this month" -> use [[ACTION:showonly:daterange:2026-03-01|2026-03-31]]
+- If a user says "organize by source" or "group by source" -> use [[ACTION:sort:source]]
+- If a user says "put it back" or "reset" or "show everything" -> use [[ACTION:reset]]
 - If a user asks about state-level topics, switch to state jurisdiction automatically.
 - If a user asks about enforcement, switch to the timeline tab automatically.
 - If a user asks about risks, switch to the risk assessment tab.
+- When filtering, always switch to the feed tab so the user sees the results.
 
 === GUIDELINES ===
 - Provide concise, actionable answers grounded in the dashboard data above. No filler language.
@@ -2147,6 +2168,15 @@ RULES FOR ACTIONS:
                 case 'scroll':
                     doScroll(val);
                     break;
+                case 'showonly':
+                    doShowOnly(val);
+                    break;
+                case 'sort':
+                    doSort(val);
+                    break;
+                case 'reset':
+                    doReset();
+                    break;
             }
         }
 
@@ -2267,6 +2297,146 @@ RULES FOR ACTIONS:
             };
             const el = targets[section];
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function doShowOnly(val) {
+            const parts = val.split(':');
+            const type = parts[0];
+            const criteria = parts.slice(1).join(':');
+
+            switchTab('feed');
+
+            let filtered = articles.slice();
+
+            // Apply jurisdiction filter first
+            if (activeJurisdiction === 'federal') {
+                filtered = filtered.filter(a => a.jurisdiction === 'federal');
+            } else if (activeJurisdiction === 'state') {
+                filtered = filtered.filter(a => a.jurisdiction === 'state');
+            }
+
+            switch (type) {
+                case 'source':
+                    const srcLower = criteria.toLowerCase();
+                    filtered = filtered.filter(a => a.source.toLowerCase().includes(srcLower));
+                    break;
+                case 'keyword':
+                    const kwLower = criteria.toLowerCase();
+                    filtered = filtered.filter(a =>
+                        a.title.toLowerCase().includes(kwLower) ||
+                        (a.summary && a.summary.toLowerCase().includes(kwLower))
+                    );
+                    break;
+                case 'daterange':
+                    const dates = criteria.split('|');
+                    if (dates.length === 2) {
+                        const startDate = new Date(dates[0]);
+                        const endDate = new Date(dates[1]);
+                        endDate.setHours(23, 59, 59);
+                        filtered = filtered.filter(a => {
+                            const d = new Date(a.date);
+                            return d >= startDate && d <= endDate;
+                        });
+                    }
+                    break;
+                case 'state':
+                    const stateLower = criteria.toLowerCase();
+                    filtered = filtered.filter(a =>
+                        (a.state && a.state.toLowerCase().includes(stateLower)) ||
+                        a.title.toLowerCase().includes(stateLower) ||
+                        (a.summary && a.summary.toLowerCase().includes(stateLower))
+                    );
+                    break;
+            }
+
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            renderArticles(filtered);
+
+            // Add a results count banner
+            const container = document.getElementById('articles-container');
+            if (container && container.firstChild) {
+                const banner = document.createElement('div');
+                banner.className = 'ai-filter-banner';
+                banner.innerHTML = '<span>Showing ' + filtered.length + ' of ' + articles.length + ' articles</span><button onclick="doReset()">Show All</button>';
+                banner.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:#f9f6ed;border:1px solid #e0d6b8;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;color:#1a1a2e;grid-column:1/-1;';
+                banner.querySelector('button').style.cssText = 'background:#C9A227;color:#1a1a2e;border:none;padding:0.4rem 1rem;border-radius:6px;font-weight:600;cursor:pointer;font-size:0.85rem;font-family:inherit;';
+                container.insertBefore(banner, container.firstChild);
+            }
+
+            const feed = document.getElementById('feed');
+            if (feed) feed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function doSort(order) {
+            switchTab('feed');
+
+            let filtered = articles.slice();
+
+            // Apply current jurisdiction
+            if (activeJurisdiction === 'federal') {
+                filtered = filtered.filter(a => a.jurisdiction === 'federal');
+            } else if (activeJurisdiction === 'state') {
+                filtered = filtered.filter(a => a.jurisdiction === 'state');
+            }
+
+            // Apply current category filter
+            if (activeFilter !== 'all') {
+                filtered = filtered.filter(a => a.category === activeFilter);
+            }
+
+            // Apply current search term
+            if (searchTerm) {
+                const sl = searchTerm.toLowerCase();
+                filtered = filtered.filter(a =>
+                    a.title.toLowerCase().includes(sl) ||
+                    a.summary.toLowerCase().includes(sl) ||
+                    a.source.toLowerCase().includes(sl)
+                );
+            }
+
+            switch (order) {
+                case 'newest':
+                    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'oldest':
+                    filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    break;
+                case 'source':
+                    filtered.sort((a, b) => a.source.localeCompare(b.source) || new Date(b.date) - new Date(a.date));
+                    break;
+                case 'category':
+                    filtered.sort((a, b) => a.category.localeCompare(b.category) || new Date(b.date) - new Date(a.date));
+                    break;
+            }
+
+            renderArticles(filtered);
+
+            // Add sort indicator banner
+            const labels = { newest: 'Newest First', oldest: 'Oldest First', source: 'Grouped by Source', category: 'Grouped by Category' };
+            const container = document.getElementById('articles-container');
+            if (container && container.firstChild) {
+                const banner = document.createElement('div');
+                banner.className = 'ai-filter-banner';
+                banner.innerHTML = '<span>Sorted: ' + (labels[order] || order) + ' (' + filtered.length + ' articles)</span><button onclick="doReset()">Reset</button>';
+                banner.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:#f9f6ed;border:1px solid #e0d6b8;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;color:#1a1a2e;grid-column:1/-1;';
+                banner.querySelector('button').style.cssText = 'background:#C9A227;color:#1a1a2e;border:none;padding:0.4rem 1rem;border-radius:6px;font-weight:600;cursor:pointer;font-size:0.85rem;font-family:inherit;';
+                container.insertBefore(banner, container.firstChild);
+            }
+
+            const feed = document.getElementById('feed');
+            if (feed) feed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function doReset() {
+            searchTerm = '';
+            activeFilter = 'all';
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            const allBtn = document.querySelector('[data-filter="all"]');
+            if (allBtn) allBtn.classList.add('active');
+            document.querySelectorAll('.ai-highlight').forEach(el => el.classList.remove('ai-highlight'));
+            document.querySelectorAll('.ai-filter-banner').forEach(el => el.remove());
+            filterArticles();
+            switchTab('feed');
         }
     })();
     </script>

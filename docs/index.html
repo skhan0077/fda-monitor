@@ -70,6 +70,115 @@
             font-size: 0.85rem;
         }
 
+        .subscribe-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            padding: 0.45rem 1rem;
+            background: #C9A227;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+        .subscribe-btn:hover {
+            background: #d4af37;
+            transform: translateY(-1px);
+        }
+
+        .subscribe-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 20000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .subscribe-modal-overlay.open {
+            display: flex;
+        }
+        .subscribe-modal {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .subscribe-modal h3 {
+            font-family: "Georgia", serif;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .subscribe-modal p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+        .subscribe-modal input[type="email"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #e0d6b8;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+        .subscribe-modal input[type="email"]:focus {
+            border-color: #C9A227;
+        }
+        .subscribe-modal-send {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #C9A227;
+            border: 2px solid #C9A227;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            width: 100%;
+            justify-content: center;
+        }
+        .subscribe-modal-send:hover {
+            background: #C9A227;
+            color: #1a1a2e;
+        }
+        .subscribe-modal-close {
+            display: block;
+            margin-top: 0.75rem;
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .subscribe-modal-close:hover {
+            color: #666;
+        }
+        .subscribe-success {
+            color: #2a7a3a;
+            font-weight: 600;
+            display: none;
+        }
+
         .meta-value {
             color: #fff;
             font-size: 0.95rem;
@@ -810,6 +919,10 @@
                 <div class="header-meta">
                     <div class="meta-label">Last Updated</div>
                     <div class="meta-value" id="last-updated"></div>
+                    <a href="#" class="subscribe-btn" id="subscribeBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                        Subscribe to Daily Digest
+                    </a>
                 </div>
             </div>
         </div>
@@ -1506,6 +1619,80 @@
             `).join('');
         }
         renderRisks();
+    </script>
+
+    <!-- Subscribe Modal -->
+    <div class="subscribe-modal-overlay" id="subscribeOverlay">
+        <div class="subscribe-modal">
+            <h3>Daily Regulatory Digest</h3>
+            <p>Get a daily email summarizing new FDA enforcement actions, peptide compounding developments, and state legislative updates.</p>
+            <input type="email" id="subscribeEmail" placeholder="Enter your email address" />
+            <button class="subscribe-modal-send" id="subscribeSubmit">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                Subscribe
+            </button>
+            <div class="subscribe-success" id="subscribeSuccess">You have been subscribed. Check your inbox.</div>
+            <button class="subscribe-modal-close" id="subscribeClose">No thanks</button>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const overlay = document.getElementById('subscribeOverlay');
+        const emailInput = document.getElementById('subscribeEmail');
+        const submitBtn = document.getElementById('subscribeSubmit');
+        const successMsg = document.getElementById('subscribeSuccess');
+        const closeBtn = document.getElementById('subscribeClose');
+
+        document.getElementById('subscribeBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            overlay.classList.add('open');
+            emailInput.value = '';
+            successMsg.style.display = 'none';
+            submitBtn.style.display = '';
+            emailInput.style.display = '';
+            setTimeout(() => emailInput.focus(), 100);
+        });
+
+        closeBtn.addEventListener('click', function() {
+            overlay.classList.remove('open');
+        });
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) overlay.classList.remove('open');
+        });
+
+        submitBtn.addEventListener('click', function() {
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                emailInput.style.borderColor = '#e74c3c';
+                emailInput.focus();
+                return;
+            }
+
+            const subject = encodeURIComponent('FDA Regulatory Monitor - Daily Digest Subscription');
+            const body = encodeURIComponent(
+                'I would like to subscribe to the FDA Regulatory Monitor daily digest.\n\n' +
+                'Email: ' + email + '\n' +
+                'Subscription date: ' + new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' }) + '\n\n' +
+                'Topics: FDA enforcement, peptide compounding, GLP-1 market, state legislation\n' +
+                'Frequency: Daily'
+            );
+
+            window.open('mailto:samkhan829@gmail.com?subject=' + subject + '&body=' + body, '_self');
+
+            emailInput.style.display = 'none';
+            submitBtn.style.display = 'none';
+            successMsg.style.display = 'block';
+
+            setTimeout(() => overlay.classList.remove('open'), 3000);
+        });
+
+        emailInput.addEventListener('keydown', function(e) {
+            emailInput.style.borderColor = '#e0d6b8';
+            if (e.key === 'Enter') submitBtn.click();
+        });
+    })();
     </script>
 
     <!-- AI Assistant Chatbox -->

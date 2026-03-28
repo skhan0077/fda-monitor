@@ -389,24 +389,6 @@
             border-color: #C9A227;
         }
 
-        .search-box {
-            position: relative;
-        }
-
-        #search-input {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: border-color 0.2s;
-        }
-
-        #search-input:focus {
-            outline: none;
-            border-color: #C9A227;
-            box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
-        }
 
         .key-dev-section {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -987,13 +969,6 @@
 
         <div id="feed" class="tab-content active">
             <div class="filter-section">
-                <div style="margin-bottom: 1rem;">
-                    <label for="search-input" style="font-weight: 600; color: #333; display: block; margin-bottom: 0.5rem;">Search Articles</label>
-                    <div class="search-box">
-                        <input type="text" id="search-input" placeholder="Search by title, summary, or source...">
-                    </div>
-                </div>
-
                 <div>
                     <label style="font-weight: 600; color: #333; display: block; margin-bottom: 0.75rem;">Filter by Category</label>
                     <div class="filter-buttons">
@@ -1349,10 +1324,8 @@
             });
         });
 
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            searchTerm = e.target.value;
-            filterArticles();
-        });
+        // Search is now handled by the AI assistant bot
+        // searchTerm variable is set by the bot's doSearch() action
 
         // Stat bar click navigation
         document.querySelectorAll('.stat-link').forEach(link => {
@@ -1371,7 +1344,6 @@
                     activeFilter = 'all';
 
                     if (statFilter === 'primary-sources') {
-                        document.getElementById('search-input').value = '';
                         searchTerm = '';
                         const primarySources = ['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'];
                         let filtered = articles.filter(a => primarySources.includes(a.source));
@@ -1391,7 +1363,6 @@
                     activeFilter = statFilter;
                 }
 
-                document.getElementById('search-input').value = '';
                 searchTerm = '';
                 filterArticles();
 
@@ -2190,12 +2161,11 @@ RULES FOR ACTIONS:
         }
 
         function doSearch(query) {
-            const searchInput = document.getElementById('search-input');
-            if (searchInput) {
-                searchInput.value = query;
-                searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-                searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            searchTerm = query;
+            switchTab('feed');
+            filterArticles();
+            const feed = document.getElementById('feed');
+            if (feed) feed.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function doFilter(category) {

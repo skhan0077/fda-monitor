@@ -148,6 +148,10 @@ def fetch_rss_articles() -> List[Dict]:
                     pub_date = entry.get("published", "")
                     date_obj = parse_date(pub_date)
 
+                    if date_obj is None:
+                        logger.info(f"Skipping RSS article without parseable date: {title[:60]}")
+                        continue
+
                     article = {
                         "title": title,
                         "url": url,
@@ -173,8 +177,80 @@ def fetch_rss_articles() -> List[Dict]:
     return articles
 
 
+def is_junk_link(title: str, href: str) -> bool:
+    """Filter out navigation pages, promotional content, and non-article links."""
+    title_lower = title.lower()
+    junk_patterns = [
+        "find a compounding pharmacy", "compounders on capitol hill",
+        "educon", "owner summit", "federal advocacy", "state level resources",
+        "comppac", "position statements", "ethical compounding",
+        "foundations course", "best practices", "registered outsourcing facilities",
+        "bulk drug substances used in compounding", "subscribe", "sign up",
+        "contact us", "about us", "privacy policy", "terms of use",
+        "advertise", "newsletter", "login", "sign in", "careers",
+    ]
+    if any(p in title_lower for p in junk_patterns):
+        return True
+    # Reject very short titles that are likely nav links
+    if len(title.split()) < 4:
+        return True
+    # Reject titles that run together with descriptions (scraper artifact)
+    if len(title) > 200:
+        return True
+    return False
+
+
+def extract_date_from_article_page(article_url: str) -> Optional[datetime]:
+    """Fetch an article page and try to extract the real publication date."""
+    try:
+        headers = {"User-Agent": USER_AGENT}
+        response = requests.get(article_url, headers=headers, timeout=TIMEOUT)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, "html.parser")
+
+        # Strategy 1: Look for common meta tags with dates
+        date_meta_names = [
+            "article:published_time", "og:article:published_time",
+            "datePublished", "date", "DC.date.issued", "sailthru.date",
+            "publication_date", "parsely-pub-date",
+        ]
+        for name in date_meta_names:
+            tag = soup.find("meta", attrs={"property": name}) or soup.find("meta", attrs={"name": name})
+            if tag and tag.get("content"):
+                parsed = parse_date(tag["content"].strip()[:25])
+                if parsed and parsed.year >= 2020:
+                    return parsed
+
+        # Strategy 2: Look for <time> elements with datetime attribute
+        time_tags = soup.find_all("time", attrs={"datetime": True})
+        for tt in time_tags[:3]:
+            parsed = parse_date(tt["datetime"].strip()[:25])
+            if parsed and parsed.year >= 2020:
+                return parsed
+
+        # Strategy 3: Look for JSON-LD structured data
+        for script in soup.find_all("script", type="application/ld+json"):
+            try:
+                import json as _json
+                ld = _json.loads(script.string or "")
+                if isinstance(ld, list):
+                    ld = ld[0] if ld else {}
+                pub = ld.get("datePublished") or ld.get("dateCreated")
+                if pub:
+                    parsed = parse_date(pub.strip()[:25])
+                    if parsed and parsed.year >= 2020:
+                        return parsed
+            except Exception:
+                pass
+
+    except Exception as e:
+        logger.debug(f"Could not fetch article page for date extraction: {e}")
+
+    return None
+
+
 def fetch_web_articles() -> List[Dict]:
-    """Scrape articles from web sources."""
+    """Scrape articles from web sources, extracting real publication dates."""
     articles = []
 
     for url, source_name in SCRAPE_URLS:
@@ -185,7 +261,12 @@ def fetch_web_articles() -> List[Dict]:
             response.raise_for_status()
 
             soup = BeautifulSoup(response.content, "html.parser")
-            links = soup.find_all("a", limit=30)
+
+            # Build base URL for resolving relative links
+            from urllib.parse import urljoin
+            base_url = url
+
+            links = soup.find_all("a", limit=50)
 
             for link in links:
                 try:
@@ -195,17 +276,32 @@ def fetch_web_articles() -> List[Dict]:
                     if not href or not title or len(title) < 10:
                         continue
 
+                    # Resolve relative URLs properly
                     if not href.startswith(("http://", "https://")):
-                        if href.startswith("/"):
-                            href = url.split("/")[0] + "//" + url.split("//")[1] + href
-                        else:
-                            continue
+                        href = urljoin(base_url, href)
 
                     text_to_check = f"{title}".lower()
                     if not any(keyword in text_to_check for keyword in KEYWORDS):
                         continue
 
-                    date_obj = datetime.utcnow()
+                    # Filter out junk/navigation links
+                    if is_junk_link(title, href):
+                        logger.debug(f"Skipping junk link: {title[:50]}")
+                        continue
+
+                    # Try to extract real publication date from the article page
+                    date_obj = extract_date_from_article_page(href)
+                    if date_obj is None:
+                        # Check for date in surrounding HTML (sibling/parent elements)
+                        parent = link.parent
+                        if parent:
+                            time_tag = parent.find("time", attrs={"datetime": True})
+                            if time_tag:
+                                date_obj = parse_date(time_tag["datetime"].strip()[:25])
+                        # If still no date, check for date-like text near the link
+                        if date_obj is None:
+                            logger.info(f"Skipping article without extractable date: {title[:60]}")
+                            continue
 
                     article = {
                         "title": title[:200],
@@ -219,7 +315,7 @@ def fetch_web_articles() -> List[Dict]:
                         "tier": "supplementary",
                     }
                     articles.append(article)
-                    logger.info(f"Added web article from {source_name}: {title[:60]}")
+                    logger.info(f"Added web article from {source_name}: {title[:60]} (dated {article['date']})")
 
                 except Exception as e:
                     logger.warning(f"Error processing link from {source_name}: {e}")
@@ -232,24 +328,45 @@ def fetch_web_articles() -> List[Dict]:
     return articles
 
 
-def parse_date(date_string: str) -> datetime:
-    """Parse date string into datetime object."""
+def parse_date(date_string: str) -> Optional[datetime]:
+    """Parse date string into datetime object. Returns None if unparseable."""
     if not date_string:
-        return datetime.utcnow()
+        return None
+
+    # Strip timezone offset suffix for formats that don't handle %z well
+    cleaned = date_string.strip()
 
     formats = [
         "%a, %d %b %Y %H:%M:%S %z",
+        "%Y-%m-%dT%H:%M:%S%z",
+        "%Y-%m-%dT%H:%M:%S.%f%z",
         "%Y-%m-%dT%H:%M:%S",
+        "%Y-%m-%dT%H:%M:%SZ",
         "%Y-%m-%d",
+        "%B %d, %Y",
+        "%b %d, %Y",
+        "%d %B %Y",
+        "%d %b %Y",
+        "%m/%d/%Y",
     ]
 
     for fmt in formats:
         try:
-            return datetime.strptime(date_string, fmt)
+            return datetime.strptime(cleaned, fmt)
         except ValueError:
             continue
 
-    return datetime.utcnow()
+    # Try stripping trailing timezone info and re-parsing
+    import re as _re
+    stripped = _re.sub(r'[+-]\d{2}:\d{2}$', '', cleaned).strip()
+    if stripped != cleaned:
+        for fmt in ["%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M:%S.%f"]:
+            try:
+                return datetime.strptime(stripped, fmt)
+            except ValueError:
+                continue
+
+    return None
 
 
 def merge_articles(existing: Dict[str, Dict], new_articles: List[Dict]) -> Dict[str, Dict]:

@@ -593,55 +593,74 @@
 
         .timeline {
             position: relative;
-            padding: 2rem 0;
+            padding: 1rem 0 1rem 2rem;
+            border-left: 3px solid #e0d6b8;
         }
 
         .timeline-item {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            display: block;
             position: relative;
-            transition: background-color 0.2s;
+            margin-bottom: 2rem;
+            padding: 1rem 1.25rem;
+            background: #fff;
+            border: 1px solid #eee;
             border-radius: 8px;
-            padding: 0.5rem;
+            transition: box-shadow 0.2s, transform 0.15s;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
         }
         .timeline-item:hover {
-            background-color: rgba(201, 162, 39, 0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transform: translateX(3px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 1.25rem;
+            width: 12px;
+            height: 12px;
+            background-color: #C9A227;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #C9A227;
+        }
+
+        .timeline-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .timeline-date {
             font-weight: 700;
             color: #C9A227;
-            min-width: 100px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        .timeline-content {
-            flex: 1;
+        .timeline-source {
+            font-size: 0.8rem;
+            color: #888;
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
-        .timeline-content h4 {
+        .timeline-title {
             color: #1a1a2e;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-family: "Georgia", serif;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        .timeline-content p {
+        .timeline-desc {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.5;
-        }
-
-        .timeline-marker {
-            position: absolute;
-            left: 47px;
-            top: 30px;
-            width: 14px;
-            height: 14px;
-            background-color: #C9A227;
-            border: 3px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px #C9A227;
         }
 
         .risk-grid {
@@ -1330,30 +1349,29 @@
 
         // Timeline rendering - jurisdiction aware with article links
         const federalMilestones = [
-            { date: 'Mar 26, 2026', title: 'NPR Reports on FDA Restrictions and Overseas Suppliers', content: 'NPR highlights how FDA restrictions on peptides have driven patients to unregulated overseas suppliers, creating new safety concerns from potentially adulterated products.', url: 'https://www.npr.org/2026/03/26/nx-s1-5758017/the-government-may-soon-lift-restrictions-on-some-peptide-treatments' },
-            { date: 'Mar 13, 2026', title: 'Eli Lilly Issues Impurity Warning on Compounded GLP-1s', content: 'Eli Lilly documents chemical impurities, bacterial contamination, and high endotoxin levels in compounded tirzepatide products with vitamin B12.', url: 'https://www.biopharmadive.com/news/lilly-obesity-zepbound-compounder-fda-impurity-/814536/' },
-            { date: 'Mar 09, 2026', title: 'Novo-Hims Partnership Agreement Announced', content: 'Hims and Hers will offer Novo Nordisk branded medications while ceasing compounded GLP-1 marketing. Novo drops patent lawsuit.', url: 'https://investors.hims.com/news/news-details/2026/Hims--Hers-Announces-Strategic-Shift-for-US-Weight-Loss-Business/default.aspx' },
-            { date: 'Mar 06, 2026', title: 'FDA Issued 30 Warning Letters to Telehealth Companies', content: 'FDA targeted telehealth firms for misleading GLP-1 claims, implying FDA approval, obscuring sourcing, and using brand-adjacent naming.', url: 'https://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s' },
-            { date: 'Mar 04, 2026', title: 'FDA Enforcement Posture Shifts', content: 'National Law Review analysis: high-volume, standardized formulation and national distribution are now treated as manufacturing, not compounding.', url: 'https://natlawreview.com/article/fda-tightens-belt-glp-1-compounding-escalating-threat-enforcement' },
-            { date: 'Feb 27, 2026', title: 'RFK Jr. Announces Peptide Reclassification Plans', content: 'HHS Secretary RFK Jr. announces intention to move 14 peptides from Category 2 back to Category 1, though formal rulemaking not yet issued.', url: 'https://amaneciahealth.com/fda-peptide-reclassification-2026-what-patients-need-to-know/' },
-            { date: 'Feb 23, 2026', title: 'FDA Law Blog Analysis of Enforcement Escalation', content: 'Hyman Phelps examines whether FDA is preparing DOJ prosecution after HHS General Counsel referred Hims to DOJ.', url: 'https://www.thefdalawblog.com/2026/02/the-governments-warning-shot-fda-and-hhs-turn-up-the-pressure-on-compounding/' },
-            { date: 'Feb 14, 2026', title: 'Morgan Lewis Patent Enforcement Analysis', content: 'Morgan Lewis examines how patent enforcement against compounders differs from traditional Hatch-Waxman litigation.', url: 'https://www.morganlewis.com/pubs/2026/02/does-glp-1-compounding-foretell-patent-enforcement-outside-the-hatch-waxman-framework' },
-            { date: 'Feb 09, 2026', title: 'Novo Nordisk Files Patent Infringement Suit Against Hims', content: 'Novo seeks permanent injunction and damages for compounded semaglutide products, later settled through partnership.', url: 'https://www.cnbc.com/2026/02/09/novo-nordisk-sues-hims-hers-compounded-obesity-drugs.html' },
-            { date: 'Feb 06, 2026', title: 'FDA Signals API Restriction and DOJ Referral', content: 'FDA announced GLP-1 API restrictions. Same day, HHS General Counsel referred Hims to DOJ for investigation.', url: 'https://www.cnbc.com/2026/02/06/fda-to-restrict-glp-1-ingredients-used-in-nonapproved-compounded-drugs.html' },
-            { date: 'Jan 10, 2026', title: 'APC Releases 14-Point Regulatory Blueprint', content: 'Alliance for Pharmacy Compounding proposes streamlined federal oversight framework for compounding regulation.', url: 'https://a4pc.org/news/apc-releases-12-point-blueprint-for-smarter-streamlined-federal-regulation-to-protect-patient-access-to-compounded-medications' },
-            { date: 'Dec 09, 2025', title: 'SAFE Drugs Act Introduced in Congress', content: 'H.R. 6509 proposes expanded FDA oversight including pre-compounding inspections, biennial re-inspections, and interstate shipment reporting.', url: 'https://www.dykema.com/news-insights/congress-introduces-safe-drugs-act-of-2025-expanding-fda-oversight-of-compounded-glp-1-drugs-and-telehealth-providers.html' }
+            { date: 'Mar 26, 2026', title: 'FDA Restrictions Driving Patients to Overseas Suppliers', source: 'NPR', content: 'Restrictions on compounded peptides have pushed patients toward unregulated overseas suppliers, raising new safety concerns about potentially adulterated products entering the U.S. market.', url: 'https://www.npr.org/2026/03/26/nx-s1-5758017/the-government-may-soon-lift-restrictions-on-some-peptide-treatments' },
+            { date: 'Mar 13, 2026', title: 'Impurity Warning on Compounded GLP-1 Products', source: 'BioPharma Dive', content: 'Testing revealed chemical impurities, bacterial contamination, and high endotoxin levels in compounded tirzepatide products combined with vitamin B12.', url: 'https://www.biopharmadive.com/news/lilly-obesity-zepbound-compounder-fda-impurity-/814536/' },
+            { date: 'Mar 09, 2026', title: 'Novo-Hims Partnership Agreement Announced', source: 'Hims & Hers (IR)', content: 'Hims and Hers will offer branded Novo Nordisk medications on its platform while ceasing compounded GLP-1 marketing. The patent infringement lawsuit was dropped as part of the deal.', url: 'https://investors.hims.com/news/news-details/2026/Hims--Hers-Announces-Strategic-Shift-for-US-Weight-Loss-Business/default.aspx' },
+            { date: 'Mar 06, 2026', title: 'FDA Issues 30 Warning Letters to Telehealth Companies', source: 'FDA.gov', content: 'Telehealth firms cited for misleading GLP-1 marketing claims, including implying FDA approval, obscuring compounding sourcing, and using brand-adjacent naming conventions. Companies given 15 working days to respond.', url: 'https://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s' },
+            { date: 'Mar 04, 2026', title: 'Enforcement Posture Shifts on Compounding', source: 'National Law Review', content: 'High-volume, standardized formulation and national distribution are now being treated as manufacturing rather than compounding. 503A pharmacies must remain patient-specific in both form and reality.', url: 'https://natlawreview.com/article/fda-tightens-belt-glp-1-compounding-escalating-threat-enforcement' },
+            { date: 'Feb 27, 2026', title: 'Peptide Reclassification Plans Announced', source: 'HHS', content: 'HHS Secretary announced intention to move 14 peptides from Category 2 back to Category 1, restoring compounding access. No formal Federal Register notice has been issued as of March 2026.', url: 'https://amaneciahealth.com/fda-peptide-reclassification-2026-what-patients-need-to-know/' },
+            { date: 'Feb 23, 2026', title: 'Enforcement Escalation Analysis Published', source: 'FDA Law Blog', content: 'Analysis examines whether the government is preparing DOJ prosecution following HHS General Counsel referral. Warning letters may be a precursor to more aggressive criminal enforcement.', url: 'https://www.thefdalawblog.com/2026/02/the-governments-warning-shot-fda-and-hhs-turn-up-the-pressure-on-compounding/' },
+            { date: 'Feb 09, 2026', title: 'Patent Infringement Suit Filed Against Hims', source: 'CNBC', content: 'Novo Nordisk filed suit seeking permanent injunction and damages over compounded semaglutide products. The case was later resolved through the March 2026 partnership agreement.', url: 'https://www.cnbc.com/2026/02/09/novo-nordisk-sues-hims-hers-compounded-obesity-drugs.html' },
+            { date: 'Feb 06, 2026', title: 'API Restriction Announced with DOJ Referral', source: 'CNBC', content: 'FDA announced plans to restrict GLP-1 APIs used in non-approved compounded drugs. On the same day, HHS General Counsel referred Hims to the Department of Justice for investigation.', url: 'https://www.cnbc.com/2026/02/06/fda-to-restrict-glp-1-ingredients-used-in-nonapproved-compounded-drugs.html' },
+            { date: 'Jan 10, 2026', title: 'APC Releases 14-Point Regulatory Blueprint', source: 'APC', content: 'The Alliance for Pharmacy Compounding proposed a streamlined federal oversight framework addressing FDA inspection processes, bulk drug substance policies, and interstate compounding.', url: 'https://a4pc.org/news/apc-releases-12-point-blueprint-for-smarter-streamlined-federal-regulation-to-protect-patient-access-to-compounded-medications' },
+            { date: 'Dec 09, 2025', title: 'SAFE Drugs Act Introduced in Congress', source: 'Congress.gov', content: 'H.R. 6509 would require pre-compounding inspections for 503B facilities, biennial re-inspections for high-volume compounders, and interstate shipment reporting for prescriptions exceeding 20 per drug.', url: 'https://www.dykema.com/news-insights/congress-introduces-safe-drugs-act-of-2025-expanding-fda-oversight-of-compounded-glp-1-drugs-and-telehealth-providers.html' }
         ];
 
         const stateMilestones = [
-            { date: 'Mar 27, 2026', title: 'Colorado SB 26-066 Scheduled for Committee Hearing', content: 'Colorado bill framed as targeting counterfeit drugs but opponents argue it would limit patient access to compounded GLP-1 medications.', url: 'https://a4pc.org/news/state-updates-03/27/2026', state: 'CO' },
-            { date: 'Feb 27, 2026', title: 'Indiana SB 282 Passes with Amendments', content: 'Indiana tightens bulk drug substance compounding, expands oversight and recordkeeping, and regulates medical spas through new registration and enforcement regime.', url: 'https://a4pc.org/news/state-updates-1', state: 'IN' },
-            { date: 'Feb 25, 2026', title: 'Arizona Mirror Exposes GLP-1 Gray Market', content: 'Investigative report documents quality and safety concerns in Arizona unregulated GLP-1 compounding market, pressuring lawmakers to act.', url: 'https://azmirror.com/2026/02/25/the-glp-1-drug-boom-has-a-dangerous-gray-market-arizona-lawmakers-should-step-in/', state: 'AZ' },
-            { date: 'Feb 20, 2026', title: 'Arizona HB 4036 Withdrawn After Scrutiny', content: 'Bill requiring pharmaceutical-grade bulk drug substances and quality control testing withdrawn, but provisions signal future legislative direction.', url: 'https://www.frierlevitt.com/articles/arizona-glp1-compounding-bill-withdrawn-regulatory-scrutiny/', state: 'AZ' },
-            { date: 'Jan 25, 2026', title: 'California SB 282 Introduced', content: 'Bill would restrict compounding using bulk drug substances unless specified statutory requirements are met, effective July 1, 2026.', url: 'https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/', state: 'CA' },
-            { date: 'Jan 15, 2026', title: 'California Board of Pharmacy Issues New Copy Rules', content: 'New rules define compounded drug as "essentially a copy" if it contains the same API unless a change produces a "clinically significant difference."', url: 'https://www.frierlevitt.com/articles/california-board-of-pharmacys-new-essentially-a-copy-rules-what-glp-1-compounders-need-to-know/', state: 'CA' },
-            { date: 'Dec 23, 2025', title: 'Florida HB 877 Filed', content: 'Broad state controls on compounded drug distribution, defining bulk drug substance/API and creating requirements for distribution and recordkeeping.', url: 'https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/amp/', state: 'FL' },
-            { date: 'Dec 10, 2025', title: 'Florida SB 860 Filed', content: 'Targets weight-loss compounding with API sourcing requirements from FDA-registered facilities, pharmaceutical-grade APIs, and independent quality-control testing.', url: 'https://floridahealthcarelawfirm.com/floridas-sb-860-a-new-playbook-for-weight-loss-compounding/', state: 'FL' },
-            { date: 'Aug 15, 2025', title: 'Ohio Board of Pharmacy Issues GLP-1 Compounder FAQs', content: 'Guidance states providers should generally use FDA-approved GLP-1 drugs rather than compounded versions. Compounded copies not permitted when commercially available.', url: 'https://www.foley.com/insights/publications/2025/08/glp-1-drugs-ohio-board-pharmacy-issues-faqs-compounders/', state: 'OH' }
+            { date: 'Mar 27, 2026', title: 'Colorado SB 26-066 Scheduled for Committee Hearing', source: 'APC', content: 'Bill framed as targeting counterfeit drugs would restrict licensed pharmacies from providing compounded GLP-1 medications. Opponents argue it limits patient access to affordable alternatives.', url: 'https://a4pc.org/news/state-updates-03/27/2026', state: 'CO' },
+            { date: 'Feb 27, 2026', title: 'Indiana SB 282 Passes with Amendments', source: 'APC', content: 'Tightens bulk drug substance compounding requirements, expands oversight and recordkeeping mandates, and creates a new registration and enforcement regime for medical spas.', url: 'https://a4pc.org/news/state-updates-1', state: 'IN' },
+            { date: 'Feb 25, 2026', title: 'Arizona GLP-1 Gray Market Investigation Published', source: 'Arizona Mirror', content: 'Investigative reporting documents quality and safety concerns in the state unregulated GLP-1 compounding market, increasing pressure on lawmakers to act.', url: 'https://azmirror.com/2026/02/25/the-glp-1-drug-boom-has-a-dangerous-gray-market-arizona-lawmakers-should-step-in/', state: 'AZ' },
+            { date: 'Feb 20, 2026', title: 'Arizona HB 4036 Withdrawn', source: 'Frier Levitt', content: 'Bill requiring pharmaceutical-grade bulk drug substances and quality control testing was withdrawn before advancing, but its provisions signal heightened legislative scrutiny ahead.', url: 'https://www.frierlevitt.com/articles/arizona-glp1-compounding-bill-withdrawn-regulatory-scrutiny/', state: 'AZ' },
+            { date: 'Jan 25, 2026', title: 'California SB 282 Introduced', source: 'Frier Levitt', content: 'Would restrict compounding using bulk drug substances unless specified statutory requirements are met. Effective date July 1, 2026. Also creates a new enforcement framework for medical spas.', url: 'https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/', state: 'CA' },
+            { date: 'Jan 15, 2026', title: 'California Board of Pharmacy Issues New Copy Rules', source: 'Frier Levitt', content: 'Compounded drugs now defined as "essentially a copy" if they contain the same API unless a change produces a "clinically significant difference" verified and documented by the pharmacist.', url: 'https://www.frierlevitt.com/articles/california-board-of-pharmacys-new-essentially-a-copy-rules-what-glp-1-compounders-need-to-know/', state: 'CA' },
+            { date: 'Dec 23, 2025', title: 'Florida HB 877 Filed', source: 'Frier Levitt', content: 'Creates broad state controls on compounded drug distribution including new definitions for bulk drug substance/API, distribution requirements, recordkeeping mandates, and advertising restrictions.', url: 'https://www.frierlevitt.com/articles/state-federal-legislative-developments-drug-compounding-2026/amp/', state: 'FL' },
+            { date: 'Dec 10, 2025', title: 'Florida SB 860 Filed', source: 'FL Healthcare Law Firm', content: 'Targets weight-loss compounding specifically, requiring API sourcing from FDA-registered facilities inspected within two years, pharmaceutical-grade ingredients, and independent quality-control testing.', url: 'https://floridahealthcarelawfirm.com/floridas-sb-860-a-new-playbook-for-weight-loss-compounding/', state: 'FL' },
+            { date: 'Aug 15, 2025', title: 'Ohio Board of Pharmacy Issues GLP-1 Compounder FAQs', source: 'Foley & Lardner', content: 'Guidance directs providers to use FDA-approved GLP-1 drugs rather than compounded versions when commercially available. APIs must be purchased from Ohio-licensed distributors.', url: 'https://www.foley.com/insights/publications/2025/08/glp-1-drugs-ohio-board-pharmacy-issues-faqs-compounders/', state: 'OH' }
         ];
 
         function renderTimeline() {
@@ -1376,13 +1394,14 @@
 
             const container = document.getElementById('timeline-container');
             container.innerHTML = milestones.map((milestone, index) => `
-                <a href="${milestone.url}" target="_blank" class="timeline-item" style="text-decoration: none; color: inherit; cursor: pointer;">
-                    <div class="timeline-date">${milestone.date}${milestone.state ? ' <span class="jurisdiction-badge" style="font-size: 0.7rem; padding: 1px 6px;">' + milestone.state + '</span>' : ''}</div>
-                    <div class="timeline-content">
-                        <h4>${milestone.title}</h4>
-                        <p>${milestone.content}</p>
+                <a href="${milestone.url}" target="_blank" class="timeline-item">
+                    <div class="timeline-meta">
+                        <div class="timeline-date">${milestone.date}</div>
+                        <div class="timeline-source">${milestone.source}</div>
+                        ${milestone.state ? '<span class="jurisdiction-badge" style="font-size: 0.7rem; padding: 1px 6px;">' + milestone.state + '</span>' : ''}
                     </div>
-                    <div class="timeline-marker"></div>
+                    <div class="timeline-title">${milestone.title}</div>
+                    <div class="timeline-desc">${milestone.content}</div>
                 </a>
             `).join('');
         }

@@ -1027,6 +1027,11 @@
         }
         updateTimestamp();
 
+        // Jurisdiction filter state - declared early so all render functions can reference it
+        let activeJurisdiction = 'federal';
+        let activeFilter = 'all';
+        let searchTerm = '';
+
         // Stats are initialized by updateStats() called before filterArticles()
 
         // Key developments - jurisdiction aware
@@ -1072,10 +1077,7 @@
             return ['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'].includes(source);
         }
 
-        // Jurisdiction filter state
-        let activeJurisdiction = 'federal';
-        let activeFilter = 'all';
-        let searchTerm = '';
+        // Jurisdiction filter state (declared above, before renderKeyDevelopments)
 
         // Render articles
         function renderArticles(articlesToRender) {

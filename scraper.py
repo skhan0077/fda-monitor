@@ -1447,6 +1447,60 @@ def generate_html(articles: Dict[str, Dict]) -> str:
     return html
 
 
+def update_html_articles(articles: Dict[str, Dict]) -> bool:
+    """Update only the articles data in the existing HTML file.
+
+    Instead of regenerating the entire HTML template (which would overwrite
+    hand-crafted jurisdiction sync logic, insights panels, timeline data,
+    and risk assessments), this function finds the 'const articles = [...]'
+    block in the existing HTML and replaces just the article data.
+
+    Falls back to full HTML generation if the existing file cannot be patched.
+    """
+    import re
+
+    if not HTML_FILE.exists():
+        logger.info("No existing HTML file found, generating from scratch")
+        return False
+
+    try:
+        with open(HTML_FILE, "r") as f:
+            html_content = f.read()
+    except Exception as e:
+        logger.error(f"Error reading existing HTML: {e}")
+        return False
+
+    articles_list = list(articles.values())
+    new_articles_json = json.dumps(articles_list, indent=12)
+
+    pattern = r'(const articles = \[).*?(\];)'
+    replacement = f'const articles = {new_articles_json[:-1]}];'
+
+    updated_html, count = re.subn(pattern, replacement, html_content, count=1, flags=re.DOTALL)
+
+    if count == 0:
+        logger.warning("Could not find articles array in existing HTML")
+        return False
+
+    # Also update the timestamp comment so we can track when data was last refreshed
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
+    ts_pattern = r'<!--\s*Data last refreshed:.*?-->'
+    ts_replacement = f'<!-- Data last refreshed: {ts} -->'
+    if re.search(ts_pattern, updated_html):
+        updated_html = re.sub(ts_pattern, ts_replacement, updated_html, count=1)
+    else:
+        updated_html = updated_html.replace('</head>', f'    {ts_replacement}\n</head>', 1)
+
+    try:
+        with open(HTML_FILE, "w") as f:
+            f.write(updated_html)
+        logger.info(f"Patched articles data in existing HTML ({len(articles_list)} articles)")
+        return True
+    except Exception as e:
+        logger.error(f"Error writing patched HTML: {e}")
+        return False
+
+
 def main() -> None:
     """Main execution function."""
     logger.info("Starting FDA regulatory scraper")
@@ -1470,16 +1524,20 @@ def main() -> None:
 
     save_articles(merged_articles)
 
-    html_content = generate_html(merged_articles)
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    try:
-        with open(HTML_FILE, "w") as f:
-            f.write(html_content)
-        logger.info(f"Generated HTML dashboard at {HTML_FILE}")
-    except Exception as e:
-        logger.error(f"Error writing HTML file: {e}")
-        sys.exit(1)
+    # Try to patch articles into existing HTML first (preserves jurisdiction
+    # sync, insights panels, timeline, risk assessment customizations)
+    if not update_html_articles(merged_articles):
+        logger.info("Falling back to full HTML generation")
+        html_content = generate_html(merged_articles)
+        try:
+            with open(HTML_FILE, "w") as f:
+                f.write(html_content)
+            logger.info(f"Generated HTML dashboard at {HTML_FILE}")
+        except Exception as e:
+            logger.error(f"Error writing HTML file: {e}")
+            sys.exit(1)
 
     logger.info("FDA regulatory scraper completed successfully")
 

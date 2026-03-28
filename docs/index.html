@@ -1887,7 +1887,7 @@
                     index.push({
                         type: 'insight',
                         title: ins.title,
-                        text: (ins.title + ' ' + ins.content).toLowerCase(),
+                        text: (ins.title + ' ' + (ins.text || ins.content || '')).toLowerCase(),
                         source: '',
                         category: '',
                         date: '',
@@ -1895,7 +1895,7 @@
                         jurisdiction: '',
                         state: '',
                         url: '',
-                        extra: ins.content.substring(0, 120)
+                        extra: (ins.text || ins.content || '').substring(0, 120)
                     });
                 });
 

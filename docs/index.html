@@ -179,6 +179,19 @@
             display: none;
         }
 
+        @keyframes aiHighlight {
+            0% { box-shadow: 0 0 0 0 rgba(201,162,39,0.6); }
+            50% { box-shadow: 0 0 0 6px rgba(201,162,39,0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(201,162,39,0); }
+        }
+        .ai-highlight {
+            outline: 3px solid #C9A227 !important;
+            outline-offset: 2px;
+            animation: aiHighlight 1.5s ease-in-out 3;
+            position: relative;
+            z-index: 5;
+        }
+
         .meta-value {
             color: #fff;
             font-size: 0.95rem;
@@ -1983,6 +1996,31 @@ ${insightsSummary}
 === RISK ASSESSMENTS ===
 ${risksSummary}
 
+=== DASHBOARD INTERACTION COMMANDS ===
+You can control the dashboard by including [[ACTION:...]] tags in your response. These are invisible to the user but will trigger page navigation, highlighting, and view changes. Use them proactively to guide the user to the relevant content as you answer.
+
+Available actions:
+- [[ACTION:tab:feed]] - Switch to Regulatory Feed tab
+- [[ACTION:tab:insights]] - Switch to Insights & Trends tab
+- [[ACTION:tab:timeline]] - Switch to Enforcement Timeline tab
+- [[ACTION:tab:risks]] - Switch to Risk Assessment tab
+- [[ACTION:jurisdiction:federal]] - Switch to Federal jurisdiction view
+- [[ACTION:jurisdiction:state]] - Switch to State & Local jurisdiction view
+- [[ACTION:jurisdiction:all]] - Switch to All Jurisdictions view
+- [[ACTION:search:QUERY]] - Enter a search term in the article search box (e.g., [[ACTION:search:Florida]])
+- [[ACTION:filter:CATEGORY]] - Filter articles by category (e.g., [[ACTION:filter:Enforcement]], [[ACTION:filter:Market Activity]], [[ACTION:filter:all]])
+- [[ACTION:highlight:TEXT]] - Highlight article cards or risk cards whose title contains TEXT (e.g., [[ACTION:highlight:GLP-1]])
+- [[ACTION:scroll:SECTION]] - Scroll to a section: "top", "stats", "key-dev", "feed", "insights", "timeline", "risks" (e.g., [[ACTION:scroll:risks]])
+
+RULES FOR ACTIONS:
+- Always include at least one action when your answer references a specific dashboard section, category, or jurisdiction.
+- You can chain multiple actions. They execute in order with short delays for smooth transitions.
+- Place actions at the END of your response text, after your written analysis.
+- If a user asks "show me" or "take me to" something, the action is the primary response -- still give a brief explanation.
+- If a user asks about state-level topics, switch to state jurisdiction automatically.
+- If a user asks about enforcement, switch to the timeline tab automatically.
+- If a user asks about risks, switch to the risk assessment tab.
+
 === GUIDELINES ===
 - Provide concise, actionable answers grounded in the dashboard data above. No filler language.
 - When referencing a development, cite the date and source (e.g., "Per the March 13 BioPharma Dive report...").
@@ -2045,9 +2083,18 @@ ${risksSummary}
                 }
 
                 const data = await resp.json();
-                const reply = data.choices[0].message.content;
+                const rawReply = data.choices[0].message.content;
 
-                conversationHistory.push({ role: 'assistant', content: reply });
+                // Extract actions before displaying
+                const actions = [];
+                const actionRegex = /\[\[ACTION:(.*?)\]\]/g;
+                let match;
+                while ((match = actionRegex.exec(rawReply)) !== null) {
+                    actions.push(match[1]);
+                }
+                const cleanReply = rawReply.replace(/\[\[ACTION:.*?\]\]/g, '').trim();
+
+                conversationHistory.push({ role: 'assistant', content: rawReply });
 
                 // Keep conversation manageable (system + last 20 messages)
                 if (conversationHistory.length > 21) {
@@ -2055,7 +2102,12 @@ ${risksSummary}
                 }
 
                 typingEl.remove();
-                appendMessage('assistant', reply);
+                appendMessage('assistant', cleanReply);
+
+                // Execute dashboard actions with staggered delays
+                if (actions.length > 0) {
+                    executeActions(actions);
+                }
             } catch (err) {
                 typingEl.remove();
                 appendMessage('assistant', 'I was unable to process that request. ' + err.message);
@@ -2090,6 +2142,162 @@ ${risksSummary}
                 sendMessage();
             }
         });
+
+        // === Dashboard interaction engine ===
+        function executeActions(actions) {
+            let delay = 300;
+            actions.forEach(action => {
+                setTimeout(() => runAction(action), delay);
+                delay += 500;
+            });
+        }
+
+        function runAction(action) {
+            const parts = action.split(':');
+            const cmd = parts[0];
+            const val = parts.slice(1).join(':');
+
+            switch (cmd) {
+                case 'tab':
+                    switchTab(val);
+                    break;
+                case 'jurisdiction':
+                    switchJurisdiction(val);
+                    break;
+                case 'search':
+                    doSearch(val);
+                    break;
+                case 'filter':
+                    doFilter(val);
+                    break;
+                case 'highlight':
+                    doHighlight(val);
+                    break;
+                case 'scroll':
+                    doScroll(val);
+                    break;
+            }
+        }
+
+        function switchTab(tabName) {
+            const tabBtn = document.querySelector('.tab-button[data-tab="' + tabName + '"]');
+            if (tabBtn) tabBtn.click();
+        }
+
+        function switchJurisdiction(jur) {
+            const btn = document.querySelector('.toggle-btn[data-jurisdiction="' + jur + '"]');
+            if (btn) btn.click();
+        }
+
+        function doSearch(query) {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.value = query;
+                searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function doFilter(category) {
+            // Click the stat link that matches, or reset to all
+            if (category === 'all') {
+                const allLink = document.querySelector('.stat-link[data-stat-filter="all"]');
+                if (allLink) allLink.click();
+            } else {
+                const links = document.querySelectorAll('.stat-link');
+                links.forEach(link => {
+                    if (link.getAttribute('data-stat-filter') === category) link.click();
+                });
+            }
+            switchTab('feed');
+        }
+
+        function doHighlight(text) {
+            // Clear previous highlights
+            document.querySelectorAll('.ai-highlight').forEach(el => el.classList.remove('ai-highlight'));
+
+            const searchText = text.toLowerCase();
+            let found = false;
+
+            // Search article cards
+            document.querySelectorAll('.article-card').forEach(card => {
+                const title = card.querySelector('.article-title');
+                if (title && title.textContent.toLowerCase().includes(searchText)) {
+                    card.classList.add('ai-highlight');
+                    if (!found) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                }
+            });
+
+            // Search risk cards
+            document.querySelectorAll('.risk-card').forEach(card => {
+                const title = card.querySelector('.risk-title');
+                if (title && title.textContent.toLowerCase().includes(searchText)) {
+                    card.classList.add('ai-highlight');
+                    if (!found) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                }
+            });
+
+            // Search timeline items
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                const title = item.querySelector('.timeline-title');
+                if (title && title.textContent.toLowerCase().includes(searchText)) {
+                    item.classList.add('ai-highlight');
+                    if (!found) {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                }
+            });
+
+            // Search key dev items
+            document.querySelectorAll('.key-dev-item').forEach(item => {
+                const title = item.querySelector('.key-dev-title-item');
+                if (title && title.textContent.toLowerCase().includes(searchText)) {
+                    item.classList.add('ai-highlight');
+                    if (!found) {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                }
+            });
+
+            // Search insight panels
+            document.querySelectorAll('.insight-panel').forEach(panel => {
+                const title = panel.querySelector('h4');
+                if (title && title.textContent.toLowerCase().includes(searchText)) {
+                    panel.classList.add('ai-highlight');
+                    if (!found) {
+                        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                }
+            });
+
+            // Auto-clear highlights after 8 seconds
+            setTimeout(() => {
+                document.querySelectorAll('.ai-highlight').forEach(el => el.classList.remove('ai-highlight'));
+            }, 8000);
+        }
+
+        function doScroll(section) {
+            const targets = {
+                'top': document.querySelector('header'),
+                'stats': document.querySelector('.stats-bar'),
+                'key-dev': document.getElementById('key-dev-container'),
+                'feed': document.getElementById('feed'),
+                'insights': document.getElementById('insights'),
+                'timeline': document.getElementById('timeline'),
+                'risks': document.getElementById('risks')
+            };
+            const el = targets[section];
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     })();
     </script>
 </body>

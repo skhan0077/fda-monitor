@@ -823,45 +823,53 @@
 
         .bar-chart {
             display: flex;
-            align-items: flex-end;
-            gap: 1rem;
-            height: 250px;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
         .bar-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            flex-shrink: 0;
+            width: 120px;
+            text-align: right;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .bar-track {
             flex: 1;
+            background: #f0f0f0;
+            border-radius: 6px;
+            height: 28px;
+            overflow: hidden;
+            position: relative;
         }
 
         .bar {
-            width: 100%;
-            background: linear-gradient(to top, #C9A227, #d4b03f);
-            border-radius: 4px 4px 0 0;
-            min-height: 20px;
-            transition: all 0.3s;
+            height: 100%;
+            background: linear-gradient(90deg, #C9A227, #d4b03f);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            min-width: 4px;
             cursor: pointer;
         }
 
         .bar:hover {
-            background: linear-gradient(to top, #a88917, #C9A227);
+            background: linear-gradient(90deg, #a88917, #C9A227);
         }
 
         .bar-value {
-            margin-top: 0.75rem;
+            flex-shrink: 0;
+            width: 30px;
             font-weight: 600;
             color: #1a1a2e;
-            font-size: 1.1rem;
-        }
-
-        .bar-label {
-            margin-top: 0.5rem;
-            color: #666;
-            font-size: 0.85rem;
-            text-align: center;
-            max-width: 80px;
-            word-wrap: break-word;
+            font-size: 0.95rem;
         }
 
         .timeline {
@@ -1101,12 +1109,6 @@
             </a>
         </div>
         <div class="stat-item">
-            <a href="#" class="stat-link" data-stat-filter="primary-sources">
-                <div class="stat-number" id="total-sources">0</div>
-                <div class="stat-label">Unique Sources</div>
-            </a>
-        </div>
-        <div class="stat-item">
             <a href="#" class="stat-link" data-stat-filter="Enforcement">
                 <div class="stat-number" id="enforcement-actions">0</div>
                 <div class="stat-label">Enforcement Actions</div>
@@ -1198,12 +1200,6 @@
                     <a href="#" class="stat-link" data-stat-filter="all" style="text-decoration: none; color: inherit;">
                         <div class="stat-number" id="insights-total">0</div>
                         <div class="stat-label">Total Articles</div>
-                    </a>
-                </div>
-                <div class="insight-card">
-                    <a href="#" class="stat-link" data-stat-filter="primary-sources" style="text-decoration: none; color: inherit;">
-                        <div class="stat-number" id="insights-sources">0</div>
-                        <div class="stat-label">Unique Sources</div>
                     </a>
                 </div>
                 <div class="insight-card">
@@ -2134,20 +2130,54 @@
 
         // Stats are initialized by updateStats() called before filterArticles()
 
-        // Key developments - jurisdiction aware
-        const federalKeyDevs = [
-            articles.find(a => a.id === 'art-fda-30-warnings'),
-            articles.find(a => a.id === 'art-cnbc-crackdown'),
-            articles.find(a => a.source === 'Hims & Hers (IR)'),
-            articles.find(a => a.id === 'art-rfk-peptides'),
-            articles.find(a => a.id === 'art-novo-sues-hims'),
-            articles.find(a => a.id === 'art-safe-drugs-act')
-        ].filter(Boolean);
+        // Source credibility hierarchy (lower number = higher priority)
+        function getSourceTier(source) {
+            const s = source || '';
+            // Tier 1: Direct government/regulatory sources
+            if (['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'].includes(s)) return 1;
+            // Tier 2: Major credible legal/industry publications and Am Law 100 firms
+            const tier2 = ['Ropes & Gray', 'King & Spalding', 'Skadden', 'Morgan Lewis', 'McDermott Will & Emery', 'McDermott+', 'Holland & Knight', 'Foley & Lardner', 'Venable LLP', 'Mintz', 'Buchanan Ingersoll & Rooney', 'Dykema', 'Frier Levitt', 'National Law Review', 'FDA Law Blog (HP&M)', 'The FDA Law Blog', 'STAT News', 'Fierce Pharma', 'BioPharma Dive', 'AJMC', 'Pharmacy Times', 'Drug Topics', 'Lexology'];
+            if (tier2.includes(s)) return 2;
+            // Tier 3: Reputable news and industry sources
+            const tier3 = ['CNBC', 'NPR', 'Becker\'s Hospital Review', 'Healthcare Brew', 'Pharmaceutical Technology', 'Alliance for Pharmacy Compounding', 'Partnership for Safe Medicines', 'NCPA', 'Advisory Board'];
+            if (tier3.includes(s)) return 3;
+            // Tier 4: Everything else
+            return 4;
+        }
 
-        const stateKeyDevs = articles
-            .filter(a => a.jurisdiction === 'state')
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .slice(0, 6);
+        // Key developments - dynamically selected by recency and source authority
+        function selectKeyDevs(pool) {
+            // Sort by date first (newest), then by source tier (most authoritative)
+            const sorted = pool.slice()
+                .sort((a, b) => {
+                    const dateDiff = new Date(b.date) - new Date(a.date);
+                    if (dateDiff !== 0) return dateDiff;
+                    return getSourceTier(a.source) - getSourceTier(b.source);
+                });
+            // Pick up to 6, preferring diversity of topics (avoid duplicate categories)
+            const picked = [];
+            const catsSeen = new Set();
+            // First pass: one per category from the most recent/authoritative
+            for (const art of sorted) {
+                if (picked.length >= 6) break;
+                if (!catsSeen.has(art.category)) {
+                    picked.push(art);
+                    catsSeen.add(art.category);
+                }
+            }
+            // Second pass: fill remaining slots from top articles not yet picked
+            for (const art of sorted) {
+                if (picked.length >= 6) break;
+                if (!picked.includes(art)) {
+                    picked.push(art);
+                }
+            }
+            return picked;
+        }
+
+        const federalKeyDevs = selectKeyDevs(articles.filter(a => a.jurisdiction === 'federal'));
+
+        const stateKeyDevs = selectKeyDevs(articles.filter(a => a.jurisdiction === 'state'));
 
         function renderKeyDevelopments() {
             const container = document.getElementById('key-dev-container');
@@ -2174,7 +2204,7 @@
 
         // Determine if source is primary
         function isPrimarySource(source) {
-            return ['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'].includes(source);
+            return getSourceTier(source) <= 2;
         }
 
         // Jurisdiction filter state (declared above, before renderKeyDevelopments)
@@ -2231,22 +2261,18 @@
             }
 
             const totalArticles = pool.length;
-            const sources = new Set(pool.map(a => a.source)).size;
             const enforcement = pool.filter(a => a.category === 'Enforcement').length;
             const legislation = pool.filter(a => a.category === 'Guidance').length;
 
             document.getElementById('total-articles').textContent = totalArticles;
-            document.getElementById('total-sources').textContent = sources;
             document.getElementById('enforcement-actions').textContent = enforcement;
             document.getElementById('active-legislation').textContent = legislation;
 
             // Also update the Insights tab stat cards if they exist
             const insTotal = document.getElementById('insights-total');
-            const insSources = document.getElementById('insights-sources');
             const insEnf = document.getElementById('insights-enforcement');
             const insLeg = document.getElementById('insights-legislation');
             if (insTotal) insTotal.textContent = totalArticles;
-            if (insSources) insSources.textContent = sources;
             if (insEnf) insEnf.textContent = enforcement;
             if (insLeg) insLeg.textContent = legislation;
         }
@@ -2290,7 +2316,12 @@
                 );
             }
 
-            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            // Sort by date (newest first), then by source tier (authoritative first)
+            filtered.sort((a, b) => {
+                const dateDiff = new Date(b.date) - new Date(a.date);
+                if (dateDiff !== 0) return dateDiff;
+                return getSourceTier(a.source) - getSourceTier(b.source);
+            });
             renderArticles(filtered);
         }
 
@@ -2312,31 +2343,23 @@
                 e.preventDefault();
                 const statFilter = this.getAttribute('data-stat-filter');
 
+                // Close any full-page search results if open
+                const fullPage = document.getElementById('searchFullPage');
+                if (fullPage) fullPage.style.display = 'none';
+                document.querySelectorAll('.tabs, .tab-container, .stats-bar').forEach(el => el.style.display = '');
+
+                // Switch to the Regulatory Feed tab
                 document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
                 document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
                 document.getElementById('feed').classList.add('active');
                 document.querySelector('[data-tab="feed"]').classList.add('active');
 
-                if (statFilter === 'all' || statFilter === 'primary-sources') {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Set filter
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                if (statFilter === 'all') {
                     document.querySelector('[data-filter="all"]').classList.add('active');
                     activeFilter = 'all';
-
-                    if (statFilter === 'primary-sources') {
-                        searchTerm = '';
-                        const primarySources = ['FDA.gov', 'Federal Register', 'Congress.gov', 'HHS.gov'];
-                        let filtered = articles.filter(a => primarySources.includes(a.source));
-                        if (activeJurisdiction === 'federal') {
-                            filtered = filtered.filter(a => a.jurisdiction === 'federal');
-                        } else if (activeJurisdiction === 'state') {
-                            filtered = filtered.filter(a => a.jurisdiction === 'state');
-                        }
-                        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-                        renderArticles(filtered);
-                        return;
-                    }
                 } else {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                     const matchBtn = document.querySelector(`[data-filter="${statFilter}"]`);
                     if (matchBtn) matchBtn.classList.add('active');
                     activeFilter = statFilter;
@@ -2353,7 +2376,7 @@
         updateStats();
         filterArticles();
 
-        // Category chart - jurisdiction aware
+        // Category chart - jurisdiction aware (horizontal bars)
         function renderCategoryChart() {
             let pool = articles;
             if (activeJurisdiction === 'federal') {
@@ -2366,16 +2389,18 @@
                 categories[article.category] = (categories[article.category] || 0) + 1;
             });
 
+            const maxCount = Math.max(...Object.values(categories));
             const chartHTML = Object.entries(categories)
                 .sort((a, b) => b[1] - a[1])
                 .map(([category, count]) => {
-                    const maxCount = Math.max(...Object.values(categories));
-                    const heightPercent = (count / maxCount) * 100;
+                    const widthPercent = (count / maxCount) * 100;
                     return `
                         <div class="bar-item">
-                            <div class="bar" style="height: ${heightPercent}%;" title="${category}: ${count} articles"></div>
-                            <div class="bar-value">${count}</div>
                             <div class="bar-label">${category}</div>
+                            <div class="bar-track">
+                                <div class="bar" style="width: ${widthPercent}%;" title="${category}: ${count} articles"></div>
+                            </div>
+                            <div class="bar-value">${count}</div>
                         </div>
                     `;
                 })

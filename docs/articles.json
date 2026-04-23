@@ -927,5 +927,29 @@
     "date_display": "Apr 20, 2026",
     "tier": "supplementary",
     "id": "art-1a2bfbc3c0a8"
+  },
+  "art-bf0a2743fc60": {
+    "title": "Federal watchdog looks at compounded GLP-1 oversight",
+    "url": "https://a4pc.org/news/federal-watchdog-looks-at-compounded-glp-1-oversight",
+    "summary": "",
+    "date": "2026-04-23",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "GLP-1",
+    "jurisdiction": "federal",
+    "date_display": "Apr 23, 2026",
+    "tier": "supplementary",
+    "id": "art-bf0a2743fc60"
+  },
+  "art-e51ae03faf74": {
+    "title": "FDA schedules a peptide PCAC meeting",
+    "url": "https://a4pc.org/news/fda-schedules-a-peptide-pcac-meeting",
+    "summary": "",
+    "date": "2026-04-23",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "Peptides",
+    "jurisdiction": "federal",
+    "date_display": "Apr 23, 2026",
+    "tier": "supplementary",
+    "id": "art-e51ae03faf74"
   }
 }

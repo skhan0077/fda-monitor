@@ -951,5 +951,29 @@
     "date_display": "Apr 23, 2026",
     "tier": "supplementary",
     "id": "art-e51ae03faf74"
+  },
+  "art-f57fedd2c785": {
+    "title": "A peptide primer from legal experts",
+    "url": "https://a4pc.org/news/a-peptide-primer-from-legal-experts",
+    "summary": "",
+    "date": "2026-04-30",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "Peptides",
+    "jurisdiction": "federal",
+    "date_display": "Apr 30, 2026",
+    "tier": "supplementary",
+    "id": "art-f57fedd2c785"
+  },
+  "art-147fcfbc30cc": {
+    "title": "RFK addresses DTE and peptides in E&C hearing",
+    "url": "https://a4pc.org/news/rfk-addresses-dte-and-peptides-in-ec-hearing",
+    "summary": "",
+    "date": "2026-04-30",
+    "source": "Alliance for Pharmacy Compounding",
+    "category": "Peptides",
+    "jurisdiction": "federal",
+    "date_display": "Apr 30, 2026",
+    "tier": "supplementary",
+    "id": "art-147fcfbc30cc"
   }
 }
